@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class CS_ColorHelp : MonoBehaviour
+public class CS_SpiritHelp : MonoBehaviour
 {
-    SpriteRenderer sprite;
     Animator anim;
     private void Start()
     {
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
