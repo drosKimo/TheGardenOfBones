@@ -197,6 +197,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 865799634616615650}
     m_Modifications:
+    - target: {fileID: 6618408701316124950, guid: 7280c2edc0a323142893e18d61a73805, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1414109486, guid: da7bfb745976d664cafd90377a7d77f1, type: 3}
+    - target: {fileID: 6618408701316124950, guid: 7280c2edc0a323142893e18d61a73805, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618408701316124950, guid: 7280c2edc0a323142893e18d61a73805, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7130543466886496033, guid: 7280c2edc0a323142893e18d61a73805, type: 3}
       propertyPath: m_Name
       value: PFB_SpiritEditor

@@ -20,6 +20,11 @@ public class CS_SpiritController : MonoBehaviour
                 spiritHelp.anim.SetTrigger("Left");
                 StartCoroutine(HelpDestroyer());
                 break;
+            case 2:
+                spiritAnim.SetInteger("SetSpirit", 0);
+                spiritAnim.SetTrigger("Planted");
+                StartCoroutine (TriggerDestroyer());
+                break;
         }
     }
 
@@ -27,13 +32,29 @@ public class CS_SpiritController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f); // таймер на удаление
 
-        foreach (Transform child in gameObject.transform) // работа с дочерними объкектами
+        foreach (Transform child in gameObject.transform) // работа с дочерними объектами
         {
             if (child.tag == "Help")
             {
                 Destroy(child.gameObject);
             }
         }
+
+        yield return null;
+    }
+    IEnumerator TriggerDestroyer()
+    {
+        foreach (Transform child in gameObject.transform) // работа с дочерними объектами
+        {
+            if (child.tag == "SpiritTrigger")
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        yield return new WaitForSeconds(2.5f); // таймер на удаление
+
+        Destroy(gameObject);
 
         yield return null;
     }

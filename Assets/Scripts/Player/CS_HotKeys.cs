@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CS_HotKeys : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CS_HotKeys : MonoBehaviour
     string collName;
 
     Component[] components;
+    Animator spiritAnim;
 
     private void Awake()
     {
@@ -35,15 +37,26 @@ public class CS_HotKeys : MonoBehaviour
                         switch (useCode)
                         {
                             // 1 = поднять призрака
+                            // 2 = посадка (в землю)
+                            // 3 = открытие двери (+ переход)
+                            // 4 = ухаживать за садом
 
                             case 1:
+                                useCode = 2;
                                 Object obj = GameObject.Find(collName); // поиск объекта по имени 
-                                Animator spiritAnim = obj.GetComponent<Animator>();
+                                spiritAnim = obj.GetComponent<Animator>();
 
                                 spiritAnim.SetTrigger("Arised"); // сначала включает триггер
                                 spiritAnim.SetInteger("SetSpirit", 1); // дальнейшая работа в CS_SpiritController.cs
 
                                 StartCoroutine(player_use()); // корутина с таймингами анимации использования
+                                break;
+
+                            case 2:
+                                spiritAnim.SetInteger("SetSpirit", 2);
+                                StartCoroutine(player_use());
+                                spiritAnim = null;
+                                useCode = 0;
                                 break;
                         }
                         break;
@@ -55,6 +68,10 @@ public class CS_HotKeys : MonoBehaviour
                             PlayAnimations();
                         else
                             StopAnimations();
+                        break;
+
+                    case KeyCode.F: // перезагрузка сцены
+                        SceneManager.LoadScene("Test Scene");
                         break;
 
                     default:
@@ -73,8 +90,11 @@ public class CS_HotKeys : MonoBehaviour
         switch (collision.tag)
         {
             case "SpiritTrigger":
-                useCode = 1;
-                collName = collision.transform.parent.name; // получаем имя родительского объекта из триггера, в котором стоим
+                if (useCode == 0)
+                {
+                    useCode = 1;
+                    collName = collision.transform.parent.name; // получаем имя родительского объекта из триггера, в котором стоим
+                }
                 break;
         }
     }
@@ -83,8 +103,11 @@ public class CS_HotKeys : MonoBehaviour
         switch (collision.tag)
         {
             case "SpiritTrigger":
-                useCode = 0;
-                collName = null; // обнуляет имя объекта
+                if (useCode == 1)
+                {
+                    useCode = 0;
+                    collName = null; // обнуляет имя объекта
+                }
                 break;
         }
     }

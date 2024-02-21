@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 546ef38029fbde84cbbbb54aa7325e61
+guid: da7bfb745976d664cafd90377a7d77f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4900f06c5f20264896456e62a213a57
-      internalID: -1463921171
+      spriteID: bc95d0b6700053e4b8f38056b5fec659
+      internalID: 1886074268
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cf5679100bb35f4eb491f03c8cc9aa5
-      internalID: 1874986471
+      spriteID: b47c350ca8103d84e848476bc313758d
+      internalID: 1575333759
       vertices: []
       indices: 
       edges: []
@@ -169,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 353dd7ef22637404b8cd38189ecb9b96
-      internalID: -1920513477
+      spriteID: dfb5c1ad3c1271c459bac78b40bae4a4
+      internalID: -2134134241
       vertices: []
       indices: 
       edges: []
@@ -190,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc7ba9995178ca4daaed097808ab052
-      internalID: 424879734
+      spriteID: 6e53b303cec76244a92c8466b3e22985
+      internalID: 510648571
       vertices: []
       indices: 
       edges: []
@@ -211,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3b5d9bdafbc5d048932141f8c1dc5cf
-      internalID: -752893311
+      spriteID: 2bffecfbd3b86214bbc83a6f4035072e
+      internalID: -1816912332
       vertices: []
       indices: 
       edges: []
@@ -232,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 240
+        y: 336
         width: 96
         height: 48
       alignment: 0
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 183e80afca624cc438e820811fdc1776
-      internalID: -1188050265
+      spriteID: c5a558f42c748964da26589cf5c0a16d
+      internalID: -25871840
       vertices: []
       indices: 
       edges: []
@@ -253,6 +253,153 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
+        y: 336
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b7902b98efd94045a7369b498b7a8a9
+      internalID: -1757387688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd4f00f049c158146a58e75c19944dbd
+      internalID: -265788792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abe6059d784a3d547a0ce4e2678c32b1
+      internalID: -645091800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20847abbbadf28d43bd3976ca1a0aaa3
+      internalID: 610902636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_10
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf3d35172c074245a5cbda0dd0a2373
+      internalID: -606971652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e62dd6df8933b40830d21b846ebd5f
+      internalID: -2037045705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47db42296ad3ea4689c05f0523e5f46
+      internalID: 1614897006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_13
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 240
         width: 96
         height: 48
@@ -263,155 +410,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 554b2547c8acc6f43814598069054359
-      internalID: 1438599396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f97e1644a0d2fc540a537c2b9d4a9b4c
-      internalID: 1673362424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_8
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37a938cad8160894490ca6442e3b9711
-      internalID: -400042708
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_9
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1855b2eb69c9eb948b89e3b8f2825968
-      internalID: -1651059948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_10
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14d856546d8e810419d5ad92a0768d10
-      internalID: -625654532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_11
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82d7ddd45577c3c4991a24f090a3b361
-      internalID: -1347145943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_12
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 192
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6588f3e6f989097429ebbd2210395e2e
-      internalID: -1428619054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_13
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 144
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a3cf94525ee0f243ba30dd8f96a29a0
-      internalID: -685785030
+      spriteID: 3684ce8ff9dbd8441a0d8192b638a67d
+      internalID: 1414109486
       vertices: []
       indices: 
       edges: []
@@ -421,7 +421,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -431,8 +431,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7800f7a1be61694b93352eccbb2d16d
-      internalID: 1004022257
+      spriteID: c7e570198bcb7c94d94882c0c9311f53
+      internalID: -1773446727
       vertices: []
       indices: 
       edges: []
@@ -442,7 +442,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -452,8 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 820dfe67ab05ff54294e2d004f56c0ab
-      internalID: 1666233420
+      spriteID: a8647cb600ae5444fbdf351db1b31b20
+      internalID: -1694512902
       vertices: []
       indices: 
       edges: []
@@ -463,7 +463,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -473,8 +473,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 526e5d38c4de4f045af46b461ce76c1e
-      internalID: 1190392253
+      spriteID: bc3538543c36ceb48b3dd41a83da9227
+      internalID: 1288124396
       vertices: []
       indices: 
       edges: []
@@ -484,7 +484,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -494,8 +494,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2cee629a44ba324f9f9da4ac31e441b
-      internalID: 288241233
+      spriteID: aa17798f28437a84b8d86ea27413be1a
+      internalID: -1722707992
       vertices: []
       indices: 
       edges: []
@@ -505,7 +505,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -515,8 +515,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb12b670625f57d44af960163cb533ad
-      internalID: 470039831
+      spriteID: 82b9b796c0c8f2c4dae3fa538ec4a90d
+      internalID: 827878061
       vertices: []
       indices: 
       edges: []
@@ -526,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 576
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -536,8 +536,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5d582d7371c1ad469e6efc8cc485821
-      internalID: 478581107
+      spriteID: f7cd8f7f96c20c14582905302988c0d0
+      internalID: -1621432711
       vertices: []
       indices: 
       edges: []
@@ -547,7 +547,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 672
-        y: 144
+        y: 240
         width: 96
         height: 48
       alignment: 0
@@ -557,8 +557,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baac78a86445c354ebb7df8d37d51c75
-      internalID: -900118884
+      spriteID: b7a3814349cf7ca44b018ebbff0f8635
+      internalID: -1945096416
       vertices: []
       indices: 
       edges: []
@@ -568,6 +568,216 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
+        y: 240
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ae3f14567508244ad349d500dfba13
+      internalID: -1844817140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4b78e733bc52974fac67479ed0a670d
+      internalID: 1881878978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8f6c14a26dc374090d5c63000bf109
+      internalID: 1008934340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_24
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bbd489523b13de4db055d57531f7165
+      internalID: 1205513702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_25
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb572844eadeb0449fe38df506afb5d
+      internalID: -14448413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_26
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9086d27582fd5c94593170373d70c9e8
+      internalID: -258894609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_27
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77a73f9e6fe152745b17a1dd00b0ac91
+      internalID: 909566076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_28
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8e91cbc95093d46a590f1357222096
+      internalID: -61854070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_29
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 915790231f4bf3742b10622425635b76
+      internalID: 1222702668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971b7e80dc660f3468b342b3000a6f98
+      internalID: -905098378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_31
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 144
         width: 96
         height: 48
@@ -578,218 +788,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eee6e501b44b4c340a83b3f574d67d4e
-      internalID: -1283232510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_22
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e92ac93d6f9b1184d9a87534b2307e3d
-      internalID: -209467550
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_23
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 459ff968e1b92564cb6ffe59307c75df
-      internalID: 1419146069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_24
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49f1492ee55871b4097baf5e7a3dbab0
-      internalID: 1225352765
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_25
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4921a5f9e3a6da4db29c43b311d14d5
-      internalID: 1634736911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_26
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26b38b20fca1ae84eadacb3aaa2dca94
-      internalID: 1607470905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_27
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f21b96f040c9a24794372b55c541e7c
-      internalID: 285304755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_28
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9374697290ef8d04fb627aea18b553c7
-      internalID: -1834649626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_29
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7af4051ecf962e5459f6e6bac247d586
-      internalID: -47105574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_30
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 96
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffd5af4be3689a04d8634d5b680feeff
-      internalID: 1052601362
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_31
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 834d5f3e1f13f7544a32ae102fdad79d
-      internalID: 892246287
+      spriteID: 672f218b71828b8499bf1ff75ae2ce67
+      internalID: 169545977
       vertices: []
       indices: 
       edges: []
@@ -799,6 +799,237 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d64c2ec6846b49488a2b4a5a8c2aecd
+      internalID: 427241402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbcb0cbca7f5094084f7dfb4818d915
+      internalID: -1826659760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_34
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 400461c5aa9e4754caf14cd2f6baa85f
+      internalID: -1418032691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_35
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6efdd8f3c683c444e84f45324a220056
+      internalID: -1166752800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_36
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34bb8a55f9238148afbc40626e555a7
+      internalID: -1029843509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_37
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08ba75b64ff3174ba060375dd50a707
+      internalID: -1326178853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_38
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c06ecc4ca7c36b4e83761c5d03c7bd9
+      internalID: 977221186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_39
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 144
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7ad829bdeab594e8ef1433cba65854
+      internalID: 1338897741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee19d27b540b514fb72e3c6c8186d6e
+      internalID: -166819866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_41
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d93d0b9e2ba0b44da71cd398c724f7e
+      internalID: 1266263634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30675eca742483b4f97be9921624a83e
+      internalID: 710771986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_43
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 48
         width: 96
         height: 48
@@ -809,14 +1040,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60b3ed0b951af0044ab3d727dae4659e
-      internalID: 1061515502
+      spriteID: 700f0ec7431a8764495296537475de49
+      internalID: -1585189364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spirit_wolf_33
+      name: spirit_wolf_44
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd316c7568669f648bda03a484f06931
+      internalID: 72176410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_45
       rect:
         serializedVersion: 2
         x: 192
@@ -830,14 +1082,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0b959c81c18f7343815adde851a941c
-      internalID: 1355183383
+      spriteID: 68bbe3e8070787f4eb470d524c726489
+      internalID: 92166908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spirit_wolf_34
+      name: spirit_wolf_46
       rect:
         serializedVersion: 2
         x: 288
@@ -851,14 +1103,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 185f45d6273a3814b920d539f4fb8987
-      internalID: 688921095
+      spriteID: 8e71ebe72d7307f4f83688db1f361b2a
+      internalID: 351099720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spirit_wolf_35
+      name: spirit_wolf_47
       rect:
         serializedVersion: 2
         x: 384
@@ -872,98 +1124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd15db0c794f21043a60a5915953d3b4
-      internalID: 644398078
+      spriteID: 583aff0cdc65afe4593ece7d9951d51d
+      internalID: -1796501780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spirit_wolf_36
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 48
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a405cc29dcca77740adedc5395a26ea4
-      internalID: 526699102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_37
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 48
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8729fe79a7a41994097369c219342878
-      internalID: 2003482099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_38
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 48
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9066f0d60aad3fe489f1e18501db9bdb
-      internalID: 1141385509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_39
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 48
-        width: 96
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45106927e462c854e862349d70b1b33a
-      internalID: 1452980123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spirit_wolf_40
+      name: spirit_wolf_48
       rect:
         serializedVersion: 2
         x: 0
@@ -977,8 +1145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 522cf2ad23c798e48bcc371b333ab955
-      internalID: -1377986192
+      spriteID: e3899b66885947f448f7c2ffe52208b1
+      internalID: 436737652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32615f08d0ed4c14abd4598941267b58
+      internalID: 967474444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_50
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8269c5a27a4a267428a13287e75a2f3f
+      internalID: 792940691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_51
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a22648e3ced20a418ef75f5e54c843a
+      internalID: 676373595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spirit_wolf_52
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf549a93b9f071468b94da6fc7f76af
+      internalID: 996188000
       vertices: []
       indices: 
       edges: []
@@ -994,47 +1246,59 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spirit_wolf_0: -1463921171
-      spirit_wolf_1: 1874986471
-      spirit_wolf_10: -625654532
-      spirit_wolf_11: -1347145943
-      spirit_wolf_12: -1428619054
-      spirit_wolf_13: -685785030
-      spirit_wolf_14: 1004022257
-      spirit_wolf_15: 1666233420
-      spirit_wolf_16: 1190392253
-      spirit_wolf_17: 288241233
-      spirit_wolf_18: 470039831
-      spirit_wolf_19: 478581107
-      spirit_wolf_2: -1920513477
-      spirit_wolf_20: -900118884
-      spirit_wolf_21: -1283232510
-      spirit_wolf_22: -209467550
-      spirit_wolf_23: 1419146069
-      spirit_wolf_24: 1225352765
-      spirit_wolf_25: 1634736911
-      spirit_wolf_26: 1607470905
-      spirit_wolf_27: 285304755
-      spirit_wolf_28: -1834649626
-      spirit_wolf_29: -47105574
-      spirit_wolf_3: 424879734
-      spirit_wolf_30: 1052601362
-      spirit_wolf_31: 892246287
-      spirit_wolf_32: 1061515502
-      spirit_wolf_33: 1355183383
-      spirit_wolf_34: 688921095
-      spirit_wolf_35: 644398078
-      spirit_wolf_36: 526699102
-      spirit_wolf_37: 2003482099
-      spirit_wolf_38: 1141385509
-      spirit_wolf_39: 1452980123
-      spirit_wolf_4: -752893311
-      spirit_wolf_40: -1377986192
-      spirit_wolf_5: -1188050265
-      spirit_wolf_6: 1438599396
-      spirit_wolf_7: 1673362424
-      spirit_wolf_8: -400042708
-      spirit_wolf_9: -1651059948
+      spirit_wolf_0: 1886074268
+      spirit_wolf_1: 1575333759
+      spirit_wolf_10: -606971652
+      spirit_wolf_11: -2037045705
+      spirit_wolf_12: 1614897006
+      spirit_wolf_13: 1414109486
+      spirit_wolf_14: -1773446727
+      spirit_wolf_15: -1694512902
+      spirit_wolf_16: 1288124396
+      spirit_wolf_17: -1722707992
+      spirit_wolf_18: 827878061
+      spirit_wolf_19: -1621432711
+      spirit_wolf_2: -2134134241
+      spirit_wolf_20: -1945096416
+      spirit_wolf_21: -1844817140
+      spirit_wolf_22: 1881878978
+      spirit_wolf_23: 1008934340
+      spirit_wolf_24: 1205513702
+      spirit_wolf_25: -14448413
+      spirit_wolf_26: -258894609
+      spirit_wolf_27: 909566076
+      spirit_wolf_28: -61854070
+      spirit_wolf_29: 1222702668
+      spirit_wolf_3: 510648571
+      spirit_wolf_30: -905098378
+      spirit_wolf_31: 169545977
+      spirit_wolf_32: 427241402
+      spirit_wolf_33: -1826659760
+      spirit_wolf_34: -1418032691
+      spirit_wolf_35: -1166752800
+      spirit_wolf_36: -1029843509
+      spirit_wolf_37: -1326178853
+      spirit_wolf_38: 977221186
+      spirit_wolf_39: 1338897741
+      spirit_wolf_4: -1816912332
+      spirit_wolf_40: -166819866
+      spirit_wolf_41: 1266263634
+      spirit_wolf_42: 710771986
+      spirit_wolf_43: -1585189364
+      spirit_wolf_44: 72176410
+      spirit_wolf_45: 92166908
+      spirit_wolf_46: 351099720
+      spirit_wolf_47: -1796501780
+      spirit_wolf_48: 436737652
+      spirit_wolf_49: 967474444
+      spirit_wolf_5: -25871840
+      spirit_wolf_50: 792940691
+      spirit_wolf_51: 676373595
+      spirit_wolf_52: 996188000
+      spirit_wolf_6: -1757387688
+      spirit_wolf_7: -265788792
+      spirit_wolf_8: -645091800
+      spirit_wolf_9: 610902636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
