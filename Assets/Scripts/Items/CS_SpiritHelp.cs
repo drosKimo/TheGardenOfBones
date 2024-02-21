@@ -2,23 +2,29 @@ using UnityEngine;
 
 public class CS_SpiritHelp : MonoBehaviour
 {
-    Animator anim;
+    [HideInInspector] public Animator anim;
     private void Start()
     {
         anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // включает очередь анимаций
-        if (collision.tag == "Player")
+        switch (collision.tag)
         {
-            anim.SetTrigger("Triggered"); // сначала включает триггер
-            anim.SetTrigger("Triggered"); // потом выключает. Иначе, багует
+            case "Player": // включает очередь анимаций
+                anim.SetTrigger("Triggered"); // сначала включает триггер
+                anim.SetTrigger("Triggered"); // потом выключает. Иначе, багует
+                break;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // выключает
-        anim.SetTrigger("Left");
+        switch (collision.tag)
+        {
+            case "Player": 
+                // выключает
+                anim.SetTrigger("Left");
+                break;
+        }
     }
 }

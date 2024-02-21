@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dead
   - SpiritTrigger
+  - Help
   layers:
   - Default
   - TransparentFX

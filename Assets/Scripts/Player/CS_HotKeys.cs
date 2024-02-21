@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CS_HotKeys : MonoBehaviour
@@ -6,10 +7,11 @@ public class CS_HotKeys : MonoBehaviour
     // Перепривязка клавиш:
     // https://null-code.ru/solution/142-menyu-privyazki-klavish-sohranenie.html
 
-    bool stopped = false;
     CS_PlayerController controller;
 
-    [HideInInspector] public bool aaa; // тут долна быть буль для проверки нахождения в зоне взаимодействия
+    int useCode = 0;
+    bool stopped = false;
+    string collName;
 
     Component[] components;
 
@@ -29,8 +31,21 @@ public class CS_HotKeys : MonoBehaviour
             {
                 switch (pushed.keyCode)
                 {
-                    case KeyCode.F: // использование
-                        StartCoroutine(player_use());
+                    case KeyCode.E: // использование                      
+                        switch (useCode)
+                        {
+                            // 1 = поднять призрака
+
+                            case 1:
+                                Object obj = GameObject.Find(collName); // поиск объекта по имени 
+                                Animator spiritAnim = obj.GetComponent<Animator>();
+
+                                spiritAnim.SetTrigger("Arised"); // сначала включает триггер
+                                spiritAnim.SetInteger("SetSpirit", 1); // дальнейшая работа в CS_SpiritController.cs
+
+                                StartCoroutine(player_use()); // корутина с таймингами анимации использования
+                                break;
+                        }
                         break;
 
                     case KeyCode.Escape: // пауза, остановить анимации
@@ -46,10 +61,31 @@ public class CS_HotKeys : MonoBehaviour
                         break;
                 }
             }
-            if (pushed.isMouse)
+            else if (pushed.isMouse)
             {
 
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "SpiritTrigger":
+                useCode = 1;
+                collName = collision.transform.parent.name; // получаем имя родительского объекта из триггера, в котором стоим
+                break;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "SpiritTrigger":
+                useCode = 0;
+                collName = null; // обнуляет имя объекта
+                break;
         }
     }
 
