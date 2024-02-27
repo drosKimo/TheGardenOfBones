@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public class CS_SpiritController : MonoBehaviour
