@@ -12,12 +12,12 @@ public class CS_SpiritController : MonoBehaviour
     [SerializeField] float speed;
 
     CS_SpiritHelp spiritHelp;
+    CS_SettingGround settingGround;
     NavMeshAgent meshAgent;
     SpriteRenderer spiritRender;
 
-    Vector3 player_pos;
+    Vector3 nextPosition;
     bool guided = false;
-    float distance = 1.6f;
 
     private void Awake()
     {
@@ -40,26 +40,20 @@ public class CS_SpiritController : MonoBehaviour
                 StartCoroutine(HelpDestroyer());
                 break;
             case 2:
-                guided = false;
                 spiritAnim.SetInteger("SetSpirit", 0);
                 spiritAnim.SetTrigger("Planted");
-                meshAgent.isStopped = true; // чтобы остановить агента, если он далеко. ВРЕМЕННО
                 StartCoroutine (TriggerDestroyer());
                 break;
         }
 
-        if (guided == true)
+        if (guided == true) // пока не посадили, будет ходить за игроком
         {
-            player_pos = playerTransform.position;
+            nextPosition = playerTransform.position;
 
-            meshAgent.destination = player_pos;
-            meshAgent.stoppingDistance = distance;
-
-            if ((gameObject.transform.position - player_pos).x > 0) // сравнение позиций относительно друг друга
-                spiritRender.flipX = true; // моделька разворачивается
-            else spiritRender.flipX = false;
-
-            spiritAnim.SetBool(name: "GoRight", value: meshAgent.remainingDistance > distance); // двигается только когда расстояние больше дистанции остановки
+            meshAgent.destination = nextPosition;
+            meshAgent.stoppingDistance = 1.6f;
+            AnimationChecker();
+            nextPosition = Vector3.zero;
         }
     }
 
@@ -87,10 +81,39 @@ public class CS_SpiritController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2.5f); // таймер на удаление
+        yield return new WaitForSeconds(2.5f); // таймер на удаление всего объекта
 
         Destroy(gameObject);
 
         yield return null;
+    }
+
+    public IEnumerator GoToGround()
+    {
+        guided = false;
+
+        settingGround = GameObject.Find("GroundTest").GetComponent<CS_SettingGround>();
+        nextPosition = settingGround.tilemap.GetCellCenterWorld(settingGround.tilePos) + new Vector3(0, 0.2f, 0);
+        // нужно добавить немного к вектору, чтобы призрак садился примерно по центру грядки
+
+        meshAgent.stoppingDistance = 0;
+        meshAgent.SetDestination(nextPosition);
+        AnimationChecker();
+        nextPosition = Vector3.zero;
+
+        yield return new WaitForSeconds(1.5f); // время на дойти до точки
+        
+        spiritAnim.SetInteger("SetSpirit", 2);
+
+        yield break;
+    }
+
+    void AnimationChecker()
+    {
+        if ((gameObject.transform.position - nextPosition).x > 0) // сравнение позиций относительно друг друга
+            spiritRender.flipX = true; // моделька разворачивается
+        else spiritRender.flipX = false;
+
+        spiritAnim.SetBool(name: "GoRight", value: meshAgent.remainingDistance > meshAgent.stoppingDistance); // двигается только когда расстояние больше дистанции остановки
     }
 }

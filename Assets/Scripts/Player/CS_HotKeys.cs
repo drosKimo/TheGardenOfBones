@@ -9,8 +9,12 @@ public class CS_HotKeys : MonoBehaviour
     // https://null-code.ru/solution/142-menyu-privyazki-klavish-sohranenie.html
 
     CS_PlayerController controller;
+    CS_SettingGround settingGround;
+    CS_SpiritController spirit;
 
-    int useCode = 0;
+    int useCode = 0, // код для взаимодействия
+        counterGround = 0, // счетчик тайлов земли
+        counterSpirits = 0; // счетчик поднятых призраков
     bool stopped = false;
     string collName;
 
@@ -19,8 +23,10 @@ public class CS_HotKeys : MonoBehaviour
 
     private void Awake()
     {
-        // для взаимодействий
-        controller = GetComponent<CS_PlayerController>();
+        controller = GetComponent<CS_PlayerController>(); // для взаимодействий
+
+        GameObject ground = GameObject.Find("GroundTest");
+        settingGround = ground.GetComponent<CS_SettingGround>(); // для садовой земли
     }
 
     void OnGUI()
@@ -37,37 +43,47 @@ public class CS_HotKeys : MonoBehaviour
                         switch (useCode)
                         {
                             // 1 = поднять призрака
-                            // 2 = посадка (в землю)
+                            // 2 = посадка (в землю); на мышь
                             // 3 = открытие двери (+ переход)
                             // 4 = ухаживать за садом
 
                             case 1:
-                                useCode = 2;
-                                Object obj = GameObject.Find(collName); // поиск объекта по имени 
-                                spiritAnim = obj.GetComponent<Animator>();
+                                if (counterGround > counterSpirits) // проверяет, есть ли на карте свободная земля для посадки
+                                {
+                                    counterSpirits++;
+                                    useCode = 2;
+                                    Object obj = GameObject.Find(collName); // поиск объекта по имени 
+                                    spiritAnim = obj.GetComponent<Animator>();
+                                    spirit = obj.GetComponent<CS_SpiritController>();
 
-                                spiritAnim.SetTrigger("Arised"); // сначала включает триггер
-                                spiritAnim.SetInteger("SetSpirit", 1); // дальнейшая работа в CS_SpiritController.cs
+                                    spiritAnim.SetTrigger("Arised"); // сначала включает триггер
+                                    spiritAnim.SetInteger("SetSpirit", 1); // дальнейшая работа в CS_SpiritController.cs
 
-                                StartCoroutine(player_use()); // корутина с таймингами анимации использования
-                                break;
-
-                            case 2:
-                                spiritAnim.SetInteger("SetSpirit", 2);
-                                StartCoroutine(player_use());
-                                spiritAnim = null;
-                                useCode = 0;
+                                    StartCoroutine(player_use()); // корутина с таймингами анимации использования
+                                }
+                                else
+                                {
+                                    Debug.Log("Некуда посадить!");
+                                }
                                 break;
                         }
                         break;
 
-                    case KeyCode.Escape: // пауза, остановить анимации
+                    case KeyCode.Tab: // пауза, остановить анимации
                         components = FindObjectsOfType<Animator>(); // получает все компоненты типа Animator на сцене
 
                         if (stopped)
                             PlayAnimations();
                         else
                             StopAnimations();
+                        break;
+
+                    case KeyCode.Escape:
+                        Application.Quit();
+                        break;
+                    
+                    case KeyCode.Q: // для дебага, чтобы знать координаты игрока
+                        Debug.Log(gameObject.transform.position);
                         break;
 
                     case KeyCode.F: // перезагрузка сцены
@@ -80,13 +96,54 @@ public class CS_HotKeys : MonoBehaviour
             }
             else if (pushed.isMouse)
             {
+                settingGround.GetMousePosition(); // каждый раз, когда нажата мышь, получает её координаты на указанном тайлмапе (сейчас - земля для посадки)
 
+                switch (pushed.button)
+                {
+                    case 0:
+                        // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null проверяет, есть ли под мышью тайл
+                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null && useCode == 2)
+                        {
+                            StartCoroutine(spirit.GoToGround());
+                            StartCoroutine(player_use());
+
+                            // обнуляем данные существа, с которым взаимодействовали
+                            spiritAnim = null;
+                            spirit = null;
+                            useCode = 0;
+                        }
+                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2)
+                        {
+                            settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
+                            counterGround++;
+                            Debug.Log(counterGround);
+                        }
+                        break;
+
+                    case 1:
+                        // удалить возможно только если под мышью есть тайл + запрет на удаление пока за нами ходит призрак
+                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null &&
+                            settingGround.tilemap.GetTile(settingGround.tilePos).name == "RT_GardenGround" &&
+                            useCode !=2)
+                        {
+                            settingGround.tilemap.SetTile(settingGround.tilePos, null); // удалить тайл
+                            counterGround--;
+                            Debug.Log(counterGround);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+                
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        // хотя и вызывается каждый кадр нахождения в триггере, убирает баг, когда нельзя было
+        // поднять другого призрака, если посадить предыдущего, находясь в радиусе триггера второго
         switch (collision.tag)
         {
             case "SpiritTrigger":
