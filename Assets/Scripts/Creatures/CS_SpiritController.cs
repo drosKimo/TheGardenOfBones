@@ -16,7 +16,7 @@ public class CS_SpiritController : MonoBehaviour
     NavMeshAgent meshAgent;
     SpriteRenderer spiritRender;
 
-    Vector3 nextPosition;
+    public Vector3 nextPosition;
     bool guided = false;
 
     private void Awake()
@@ -81,9 +81,7 @@ public class CS_SpiritController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2.5f); // таймер на удаление всего объекта
-
-        Destroy(gameObject);
+        Destroy(gameObject, 2.5f); // таймер на удаление всего объекта
 
         yield return null;
     }
@@ -99,7 +97,7 @@ public class CS_SpiritController : MonoBehaviour
         meshAgent.stoppingDistance = 0;
         meshAgent.SetDestination(nextPosition);
         AnimationChecker();
-        nextPosition = Vector3.zero;
+        //nextPosition = Vector3.zero;
 
         yield return new WaitForSeconds(1.5f); // время на дойти до точки
         

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ public class CS_HotKeys : MonoBehaviour
 {
     // Перепривязка клавиш:
     // https://null-code.ru/solution/142-menyu-privyazki-klavish-sohranenie.html
+
+    [SerializeField] GameObject plant;
 
     CS_PlayerController controller;
     CS_SettingGround settingGround;
@@ -107,16 +110,34 @@ public class CS_HotKeys : MonoBehaviour
                             StartCoroutine(spirit.GoToGround());
                             StartCoroutine(player_use());
 
+                            Vector2 mousePos2D = new Vector2(spirit.nextPosition.x, spirit.nextPosition.y);
+                            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                            if (hit.collider.gameObject.tag == "Garden")
+                            {
+                                Debug.Log(123);
+                            }
+                            else
+                            {
+                                Debug.Log(hit.collider.gameObject.tag);
+                                Instantiate(plant, (spirit.nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
+                            }
+                                
+
                             // обнуляем данные существа, с которым взаимодействовали
                             spiritAnim = null;
                             spirit = null;
                             useCode = 0;
+
+                            //RaycastHit2D hit2D = Physics2D.Raycast(spirit.nextPosition, -Vector2.up);
+                            //List<Collider2D> list = new List<Collider2D>();
+                            //list.Add(Physics2D.OverlapCircle((new Vector2(spirit.nextPosition.x, spirit.nextPosition.y)), 2f));
+                            //Debug.Log(hit2D.collider.gameObject.name);
                         }
                         else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2)
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
                             counterGround++;
-                            Debug.Log(counterGround);
                         }
                         break;
 
@@ -128,7 +149,6 @@ public class CS_HotKeys : MonoBehaviour
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, null); // удалить тайл
                             counterGround--;
-                            Debug.Log(counterGround);
                         }
                         break;
 
