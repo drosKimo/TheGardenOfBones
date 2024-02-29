@@ -104,25 +104,37 @@ public class CS_HotKeys : MonoBehaviour
                 switch (pushed.button)
                 {
                     case 0:
+                        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                        Debug.Log(hit.collider.IsUnityNull());
+                        //Debug.Log(111);
+
+
                         // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null проверяет, есть ли под мышью тайл
                         if (settingGround.tilemap.GetTile(settingGround.tilePos) != null && useCode == 2)
                         {
                             StartCoroutine(spirit.GoToGround());
                             StartCoroutine(player_use());
 
-                            Vector2 mousePos2D = new Vector2(spirit.nextPosition.x, spirit.nextPosition.y);
-                            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                            if (hit.collider.IsUnityNull())
+                            {
+                                //Debug.Log(hit.collider.gameObject.name);
+                                Instantiate(plant, (spirit.nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
+                            }
 
-                            if (hit.collider.gameObject.tag == "Garden")
+
+                            /*if (hit.collider.gameObject.name.Contains("Plant"))
                             {
                                 Debug.Log(123);
                             }
-                            else
+                            else if (hit.collider == null)
                             {
-                                Debug.Log(hit.collider.gameObject.tag);
+                                //Debug.Log(hit.collider.gameObject.name);
                                 Instantiate(plant, (spirit.nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
-                            }
-                                
+                            }*/
+
 
                             // обнуляем данные существа, с которым взаимодействовали
                             spiritAnim = null;
