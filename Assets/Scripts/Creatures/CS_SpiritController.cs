@@ -1,9 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class CS_SpiritController : MonoBehaviour
 {
@@ -13,6 +10,8 @@ public class CS_SpiritController : MonoBehaviour
 
     CS_SpiritHelp spiritHelp;
     CS_SettingGround settingGround;
+    CS_HotKeys hotkeys;
+
     NavMeshAgent meshAgent;
     SpriteRenderer spiritRender;
 
@@ -97,13 +96,25 @@ public class CS_SpiritController : MonoBehaviour
         meshAgent.stoppingDistance = 0;
         meshAgent.SetDestination(nextPosition);
         AnimationChecker();
-        //nextPosition = Vector3.zero;
 
         yield return new WaitForSeconds(1.5f); // время на дойти до точки
-        
+
+        hotkeys = playerTransform.GetComponent<CS_HotKeys>();
         spiritAnim.SetInteger("SetSpirit", 2);
 
+        yield return new WaitForSeconds(1.5f); // таймер до появления семечки
+
+        StartCoroutine(PlantSeed());
+
         yield break;
+    }
+
+    IEnumerator PlantSeed()
+    {
+        // создает растение на месте, куда сел призрак
+        Instantiate(hotkeys.plant, (nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
+
+        yield return null;
     }
 
     void AnimationChecker()

@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5282269e19ec63488aeb15e21389eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_anim: {fileID: 0}
   speed: 4
+  player_anim: {fileID: 0}
   moveVector: {x: 0, y: 0}
   current_speed: 0
   used: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af853ffcb03c5a46a8007d64314e016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plant: {fileID: 3241376743273458279, guid: 770ce6640964c6f4782d85bd5a8b94c4, type: 3}
 --- !u!50 &8879021063825650548
 Rigidbody2D:
   serializedVersion: 4

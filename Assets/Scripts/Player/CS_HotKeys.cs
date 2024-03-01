@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +8,8 @@ public class CS_HotKeys : MonoBehaviour
     // Перепривязка клавиш:
     // https://null-code.ru/solution/142-menyu-privyazki-klavish-sohranenie.html
 
-    [SerializeField] GameObject plant;
+    [SerializeField] public GameObject plant;
+    [HideInInspector] public Object obj;
 
     CS_PlayerController controller;
     CS_SettingGround settingGround;
@@ -22,7 +22,7 @@ public class CS_HotKeys : MonoBehaviour
     string collName;
 
     Component[] components;
-    Animator spiritAnim;
+    Animator spiritAnim, plantAnim;
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class CS_HotKeys : MonoBehaviour
                                 {
                                     counterSpirits++;
                                     useCode = 2;
-                                    Object obj = GameObject.Find(collName); // поиск объекта по имени 
+                                    obj = GameObject.Find(collName); // поиск объекта по имени 
                                     spiritAnim = obj.GetComponent<Animator>();
                                     spirit = obj.GetComponent<CS_SpiritController>();
 
@@ -67,6 +67,14 @@ public class CS_HotKeys : MonoBehaviour
                                 else
                                 {
                                     Debug.Log("Некуда посадить!");
+                                }
+                                break;
+                            case 4:
+                                plantAnim.SetInteger("StateCounter", plantAnim.GetInteger("StateCounter") + 1);
+                                if (plantAnim.GetInteger("StateCounter") == 3)
+                                {
+                                    counterSpirits--;
+                                    Destroy(plantAnim.gameObject, 1.5f);
                                 }
                                 break;
                         }
@@ -104,49 +112,31 @@ public class CS_HotKeys : MonoBehaviour
                 switch (pushed.button)
                 {
                     case 0:
+                        //обязательно нужно отдельно получить позицию мыши, иначе работпет неправильно
                         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
                         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-                        Debug.Log(hit.collider.IsUnityNull());
-                        //Debug.Log(111);
-
-
-                        // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null проверяет, есть ли под мышью тайл
-                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null && useCode == 2)
+                        // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null проверяет, есть ли под мышью тайл земли
+                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null)
                         {
-                            StartCoroutine(spirit.GoToGround());
-                            StartCoroutine(player_use());
-
-                            if (hit.collider.IsUnityNull())
+                            if (hit.collider.IsUnityNull() && useCode == 2) // первая проверка узнает, есть ли под ней коллайдер
                             {
-                                //Debug.Log(hit.collider.gameObject.name);
-                                Instantiate(plant, (spirit.nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
+                                StartCoroutine(spirit.GoToGround());
+                                StartCoroutine(player_use());
+
+                                // обнуляем данные существа, с которым взаимодействовали
+                                obj = null;
+                                spiritAnim = null;
+                                spirit = null;
+                                useCode = 0;
                             }
-
-
-                            /*if (hit.collider.gameObject.name.Contains("Plant"))
+                            else
                             {
-                                Debug.Log(123);
+                                Debug.Log("Занято");
                             }
-                            else if (hit.collider == null)
-                            {
-                                //Debug.Log(hit.collider.gameObject.name);
-                                Instantiate(plant, (spirit.nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
-                            }*/
-
-
-                            // обнуляем данные существа, с которым взаимодействовали
-                            spiritAnim = null;
-                            spirit = null;
-                            useCode = 0;
-
-                            //RaycastHit2D hit2D = Physics2D.Raycast(spirit.nextPosition, -Vector2.up);
-                            //List<Collider2D> list = new List<Collider2D>();
-                            //list.Add(Physics2D.OverlapCircle((new Vector2(spirit.nextPosition.x, spirit.nextPosition.y)), 2f));
-                            //Debug.Log(hit2D.collider.gameObject.name);
                         }
-                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2)
+                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
                             counterGround++;
@@ -185,6 +175,21 @@ public class CS_HotKeys : MonoBehaviour
                     collName = collision.transform.parent.name; // получаем имя родительского объекта из триггера, в котором стоим
                 }
                 break;
+            case "Garden":
+                if (useCode == 0)
+                {
+                    useCode = 4;
+                }
+                break;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "Garden":
+                plantAnim = collision.GetComponent<Animator>();
+                break;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -197,6 +202,9 @@ public class CS_HotKeys : MonoBehaviour
                     useCode = 0;
                     collName = null; // обнуляет имя объекта
                 }
+                break;
+            case "Garden":
+                useCode = 0;
                 break;
         }
     }
