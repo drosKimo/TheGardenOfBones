@@ -18,7 +18,7 @@ public class CS_HotKeys : MonoBehaviour
     int useCode = 0, // код для взаимодействия
         counterGround = 0, // счетчик тайлов земли
         counterSpirits = 0; // счетчик поднятых призраков
-    bool stopped = false;
+    bool stopped = false, moving = false;
     string collName;
 
     Component[] components;
@@ -123,10 +123,12 @@ public class CS_HotKeys : MonoBehaviour
                             if (hit.collider.IsUnityNull() && useCode == 2) // первая проверка узнает, есть ли под ней коллайдер
                             {
                                 StartCoroutine(spirit.GoToGround());
+                                moving = spirit.moveToPoint;
                                 StartCoroutine(player_use());
 
                                 // обнуляем данные существа, с которым взаимодействовали
                                 obj = null;
+                                spirit = null;
                                 spiritAnim = null;
                                 useCode = 0;
                             }
@@ -146,9 +148,10 @@ public class CS_HotKeys : MonoBehaviour
                         // удалить возможно только если под мышью есть тайл + запрет на удаление, пока:
                         // 1. За нами ходит призрак
                         // 2. Клетка уже занята растением или на нее идет призрак
+                        
                         if (settingGround.tilemap.GetTile(settingGround.tilePos) != null &&
                             settingGround.tilemap.GetTile(settingGround.tilePos).name == "RT_GardenGround" &&
-                            useCode !=2 && hit.collider.IsUnityNull() && !spirit.moveToPoint)
+                            useCode !=2 && hit.collider.IsUnityNull() && !moving)
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, null); // удалить тайл
                             counterGround--;
@@ -223,6 +226,9 @@ public class CS_HotKeys : MonoBehaviour
         controller.player_anim.SetBool(name: "isUse", value: false);
         controller.speed = controller.current_speed;
         controller.used = false;
+
+        yield return new WaitForSeconds(1.5f);
+        moving = false; // чтобы можно было потом удалять землю
 
         yield return null;
     }
