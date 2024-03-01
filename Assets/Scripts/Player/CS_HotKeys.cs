@@ -109,14 +109,14 @@ public class CS_HotKeys : MonoBehaviour
             {
                 settingGround.GetMousePosition(); // каждый раз, когда нажата мышь, получает еЄ координаты на указанном тайлмапе (сейчас - земл€ дл€ посадки)
 
+                //об€зательно нужно отдельно получить позицию мыши дл€ проверки на наличие объектов, иначе работает неправильно
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
                 switch (pushed.button)
                 {
                     case 0:
-                        //об€зательно нужно отдельно получить позицию мыши, иначе работпет неправильно
-                        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-                        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
                         // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null провер€ет, есть ли под мышью тайл земли
                         if (settingGround.tilemap.GetTile(settingGround.tilePos) != null)
                         {
@@ -128,7 +128,6 @@ public class CS_HotKeys : MonoBehaviour
                                 // обнул€ем данные существа, с которым взаимодействовали
                                 obj = null;
                                 spiritAnim = null;
-                                spirit = null;
                                 useCode = 0;
                             }
                             else
@@ -144,10 +143,12 @@ public class CS_HotKeys : MonoBehaviour
                         break;
 
                     case 1:
-                        // удалить возможно только если под мышью есть тайл + запрет на удаление пока за нами ходит призрак
+                        // удалить возможно только если под мышью есть тайл + запрет на удаление, пока:
+                        // 1. «а нами ходит призрак
+                        // 2.  летка уже зан€та растением или на нее идет призрак
                         if (settingGround.tilemap.GetTile(settingGround.tilePos) != null &&
                             settingGround.tilemap.GetTile(settingGround.tilePos).name == "RT_GardenGround" &&
-                            useCode !=2)
+                            useCode !=2 && hit.collider.IsUnityNull() && !spirit.moveToPoint)
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, null); // удалить тайл
                             counterGround--;

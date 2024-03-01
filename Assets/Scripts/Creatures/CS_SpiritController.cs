@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class CS_SpiritController : MonoBehaviour
 {
     [HideInInspector] public Animator spiritAnim;
+    [HideInInspector] public bool moveToPoint = false;
     [SerializeField] Transform playerTransform;
     [SerializeField] float speed;
 
@@ -96,6 +97,7 @@ public class CS_SpiritController : MonoBehaviour
         meshAgent.stoppingDistance = 0;
         meshAgent.SetDestination(nextPosition);
         AnimationChecker();
+        moveToPoint = true;
 
         yield return new WaitForSeconds(1.5f); // врем€ на дойти до точки
 
@@ -104,6 +106,7 @@ public class CS_SpiritController : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f); // таймер до по€влени€ семечки
 
+        moveToPoint = false;
         StartCoroutine(PlantSeed());
 
         yield break;
