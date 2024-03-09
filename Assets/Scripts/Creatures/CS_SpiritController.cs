@@ -55,6 +55,13 @@ public class CS_SpiritController : MonoBehaviour
             AnimationChecker();
             nextPosition = Vector3.zero;
         }
+        else if (moveToPoint == true && meshAgent.remainingDistance <= 0.1f)
+        {
+            hotkeys = playerTransform.GetComponent<CS_HotKeys>();
+            spiritAnim.SetInteger("SetSpirit", 2);
+
+            StartCoroutine(PlantSeed());
+        }
     }
 
     IEnumerator HelpDestroyer()
@@ -99,21 +106,15 @@ public class CS_SpiritController : MonoBehaviour
         AnimationChecker();
         moveToPoint = true;
 
-        yield return new WaitForSeconds(1.5f); // время на дойти до точки
-
-        hotkeys = playerTransform.GetComponent<CS_HotKeys>();
-        spiritAnim.SetInteger("SetSpirit", 2);
-
-        yield return new WaitForSeconds(1.5f); // таймер до появления семечки
-
-        moveToPoint = false;
-        StartCoroutine(PlantSeed());
-
-        yield break;
+        yield return null;
     }
 
     IEnumerator PlantSeed()
     {
+        moveToPoint = false;
+
+        yield return new WaitForSeconds(1.5f); // таймер до появления семечки
+
         // создает растение на месте, куда сел призрак
         Instantiate(hotkeys.plant, (nextPosition - new Vector3(0, 0.2f, 0)), Quaternion.Euler(0, 0, 0));
 

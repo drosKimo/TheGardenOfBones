@@ -192,7 +192,7 @@ public class CS_HotKeys : MonoBehaviour
         switch (collision.tag)
         {
             case "Garden":
-                plantAnim = collision.GetComponent<Animator>();
+                plantAnim = collision.GetComponentInParent<Animator>();
                 break;
         }
     }

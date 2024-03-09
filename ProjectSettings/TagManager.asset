@@ -8,6 +8,7 @@ TagManager:
   - SpiritTrigger
   - Help
   - Garden
+  - Plant
   layers:
   - Default
   - TransparentFX

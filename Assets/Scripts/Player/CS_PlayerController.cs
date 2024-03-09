@@ -11,6 +11,8 @@ public class CS_PlayerController : MonoBehaviour
     [HideInInspector] public float current_speed;
     [HideInInspector] public bool used;
 
+    SpriteRenderer SortRend;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +38,30 @@ public class CS_PlayerController : MonoBehaviour
             player_anim.SetBool(name: "isMovingLeft", value: moveVector.x < 0);
             player_anim.SetBool(name: "isMovingRight", value: moveVector.x > 0);
             player_anim.SetBool(name: "isMovingDown", value: moveVector.y < 0);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // при входе в определенную коллизию, игрок оказывается как бы позади объекта
+        switch (collision.gameObject.tag)
+        {
+            case "Dead":
+                SortRend = collision.gameObject.GetComponent<SpriteRenderer>();
+                SortRend.sortingOrder = 2;
+                break;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        // при выходе, игрок снова перед объектом
+        switch (collision.gameObject.tag)
+        {
+            case "Dead":
+                SortRend = collision.gameObject.GetComponent<SpriteRenderer>();
+                SortRend.sortingOrder = 0;
+                break;
         }
     }
 }
