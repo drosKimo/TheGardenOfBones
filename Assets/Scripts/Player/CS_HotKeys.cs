@@ -118,7 +118,7 @@ public class CS_HotKeys : MonoBehaviour
                 {
                     case 0:
                         // строка settingGround.tilemap.GetTile(settingGround.tilePos) != null проверяет, есть ли под мышью тайл земли
-                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null)
+                        if (settingGround.tilemap.GetTile(settingGround.tilePos) != null && !stopped)
                         {
                             if (hit.collider.IsUnityNull() && useCode == 2) // первая проверка узнает, есть ли под ней коллайдер
                             {
@@ -137,7 +137,7 @@ public class CS_HotKeys : MonoBehaviour
                                 Debug.Log("Занято");
                             }
                         }
-                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
+                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2 && !stopped) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
                             counterGround++;
