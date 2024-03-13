@@ -3,6 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class Menu
+{
+    public GameObject MenuPrefab;
+}
+
 public class CS_HotKeys : MonoBehaviour
 {
     // Перепривязка клавиш:
@@ -14,6 +20,7 @@ public class CS_HotKeys : MonoBehaviour
     CS_PlayerController controller;
     CS_SettingGround settingGround;
     CS_SpiritController spirit;
+    public Menu menu = new Menu();
 
     int useCode = 0, // код для взаимодействия
         counterGround = 0, // счетчик тайлов земли
@@ -84,9 +91,15 @@ public class CS_HotKeys : MonoBehaviour
                         components = FindObjectsOfType<Animator>(); // получает все компоненты типа Animator на сцене
 
                         if (stopped)
+                        {
+                            menu.MenuPrefab.gameObject.SetActive(false);
                             PlayAnimations();
+                        }
                         else
+                        {
+                            menu.MenuPrefab.gameObject.SetActive(true);
                             StopAnimations();
+                        }
                         break;
 
                     case KeyCode.Escape:
