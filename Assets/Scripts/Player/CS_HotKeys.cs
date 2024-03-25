@@ -1,7 +1,9 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Menu
@@ -15,6 +17,7 @@ public class CS_HotKeys : MonoBehaviour
     // https://null-code.ru/solution/142-menyu-privyazki-klavish-sohranenie.html
 
     [SerializeField] public GameObject plant;
+    [SerializeField] TMP_Text daytimeText;
     [HideInInspector] public Object obj;
 
     CS_PlayerController controller;
@@ -58,7 +61,9 @@ public class CS_HotKeys : MonoBehaviour
                             // 4 = ухаживать за садом
 
                             case 1:
-                                if (counterGround > counterSpirits) // проверяет, есть ли на карте свободная земля для посадки
+                                // проверяет, есть ли на карте свободная земля для посадки
+                                // запрещает поднимать призраков, если рабочее время прошло 
+                                if (counterGround > counterSpirits && daytimeText.text == "work time") 
                                 {
                                     counterSpirits++;
                                     useCode = 2;

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 7021096}
   - component: {fileID: 7021095}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DaytimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,6 +489,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2724427635894615400, guid: 770ce6640964c6f4782d85bd5a8b94c4, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 7021095}
+    - target: {fileID: 2724427635894615400, guid: 770ce6640964c6f4782d85bd5a8b94c4, type: 3}
+      propertyPath: text1
+      value: 
+      objectReference: {fileID: 7021095}
     - target: {fileID: 3241376743273458279, guid: 770ce6640964c6f4782d85bd5a8b94c4, type: 3}
       propertyPath: m_Name
       value: Plant
@@ -5592,6 +5600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792064670}
   - component: {fileID: 792064671}
+  - component: {fileID: 792064672}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -5665,12 +5674,26 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &792064672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792064669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc453fd3a824a14797b3f514ad7c820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 7021095}
+  slider: {fileID: 0}
 --- !u!1 &950918381
 GameObject:
   m_ObjectHideFlags: 0
@@ -7940,6 +7963,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: daytimeText
+      value: 
+      objectReference: {fileID: 7021095}
     - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
       propertyPath: menu.MenuPrefab
       value: 
