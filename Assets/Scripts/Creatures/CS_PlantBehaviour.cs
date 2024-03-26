@@ -13,7 +13,7 @@ public class CS_PlantBehaviour : MonoBehaviour
     [HideInInspector] public Animator animHelp;
 
     TMP_Text text;
-    Animator animObj;
+    Animator animObj, animPlayer;
     // даст возможность приостановить или ускорить "злое" время
     int angryMult = 1;
 
@@ -22,6 +22,7 @@ public class CS_PlantBehaviour : MonoBehaviour
         animHelp = help.GetComponent<Animator>();
         animObj = GetComponent<Animator>();
         text = GameObject.Find("DaytimeText").GetComponent<TMP_Text>();
+        animPlayer = GameObject.Find("Player").GetComponent<Animator>();
 
         animObj.SetBool("TimeRun", true);
     }
@@ -96,6 +97,7 @@ public class CS_PlantBehaviour : MonoBehaviour
         {
             animHelp.SetTrigger("Left"); // выключает "помощь"
             angry_timeLeft = 0;
+            animPlayer.SetInteger("AngrySpirit", 1);
             Destroy(gameObject, 1.5f);
         }
     }

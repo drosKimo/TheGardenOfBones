@@ -32,7 +32,7 @@ public class CS_HotKeys : MonoBehaviour
     string collName;
 
     Component[] components;
-    Animator spiritAnim, plantAnim;
+    Animator spiritAnim, plantAnim, playerAnim;
 
     private void Awake()
     {
@@ -40,10 +40,17 @@ public class CS_HotKeys : MonoBehaviour
 
         GameObject ground = GameObject.Find("GroundTest");
         settingGround = ground.GetComponent<CS_SettingGround>(); // для садовой земли
+        playerAnim = controller.gameObject.GetComponent<Animator>();
     }
 
     void OnGUI()
     {
+        if (playerAnim.GetInteger("AngrySpirit") == 1)
+        {
+            counterSpirits--;
+            playerAnim.SetInteger("AngrySpirit", 0);
+        }
+
         // использование switch-case сегмента невозможно
         if (Input.anyKeyDown)
         {
@@ -96,10 +103,6 @@ public class CS_HotKeys : MonoBehaviour
                                         counterSpirits--;
                                         Destroy(plantAnim.gameObject, 1.5f);
                                     }
-                                }
-                                else if (plantBH.angry_timeLeft <= 0)
-                                {
-                                    counterSpirits--;
                                 }
                                 break;
                         }
