@@ -135,6 +135,12 @@ public class CS_HotKeys : MonoBehaviour
                         SceneManager.LoadScene("Test Scene");
                         break;
 
+                    /*case KeyCode.L: 
+                        CS_DaytimeTimer daytimeTimer = GameObject.Find("Slder").GetComponent<CS_DaytimeTimer>();
+                        Slider aaa = daytimeTimer.GetComponent<Slider>();
+                        daytimeText.text = "work time";
+                        break;*/
+
                     default:
                         break;
                 }

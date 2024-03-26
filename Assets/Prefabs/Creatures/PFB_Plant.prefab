@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 2577529549875652239}
   - component: {fileID: 2724427635894615400}
   m_Layer: 0
-  m_Name: Plant
+  m_Name: PFB_Plant
   m_TagString: Dead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

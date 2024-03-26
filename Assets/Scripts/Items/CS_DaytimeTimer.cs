@@ -8,14 +8,22 @@ public class CS_DaytimeTimer : MonoBehaviour
     [SerializeField] TMP_Text text;
 
     // время в UnityEditor ставить в секундах
-    public Slider slider;
+    [HideInInspector] public Slider slider;
     float timeLeft;
+    Animator animPlayer;
 
     private void Awake()
     {
         slider = GetComponent<Slider>();
+        animPlayer = GameObject.Find("Player").GetComponent<Animator>();
+
         timeLeft = slider.value;
         StartCoroutine(StartTimer());
+    }
+
+    private void Update()
+    {
+        
     }
 
     public IEnumerator StartTimer()
@@ -36,6 +44,7 @@ public class CS_DaytimeTimer : MonoBehaviour
         {
             timeLeft = 0;
             text.text = "night time";
+            //gameObject.SetActive(false);
         }
     }
 }
