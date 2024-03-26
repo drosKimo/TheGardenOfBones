@@ -82,11 +82,24 @@ public class CS_HotKeys : MonoBehaviour
                                 }
                                 break;
                             case 4:
-                                plantAnim.SetInteger("StateCounter", plantAnim.GetInteger("StateCounter") + 1);
-                                if (plantAnim.GetInteger("StateCounter") == 3)
+                                // Получает доступ к объекту-растению
+                                // plantAnim = компонент-аниматор, так что сначала нужно обратиться к его игровому объекту
+                                CS_PlantBehaviour plantBH = plantAnim.gameObject.GetComponent<CS_PlantBehaviour>();
+                                if (plantBH.timeLeft <= 0) // когда таймер вышел
+                                {
+                                    plantBH.animHelp.SetTrigger("Left"); // убирает пометку "помощь" над растением
+
+                                    plantAnim.SetBool("TimeRun", true); // разрешает снова запустить таймер
+                                    plantAnim.SetInteger("StateCounter", plantAnim.GetInteger("StateCounter") + 1); // добавляет стадию роста
+                                    if (plantAnim.GetInteger("StateCounter") == 3)
+                                    {
+                                        counterSpirits--;
+                                        Destroy(plantAnim.gameObject, 1.5f);
+                                    }
+                                }
+                                else if (plantBH.angry_timeLeft <= 0)
                                 {
                                     counterSpirits--;
-                                    Destroy(plantAnim.gameObject, 1.5f);
                                 }
                                 break;
                         }
