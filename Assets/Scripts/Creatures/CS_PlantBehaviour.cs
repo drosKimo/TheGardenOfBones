@@ -70,7 +70,6 @@ public class CS_PlantBehaviour : MonoBehaviour
         // если не успеть до конца, растение пропадет
         while (angry_timeLeft > 0)
         {            
-            Debug.Log(angry_timeLeft);
             // TimeUp = множитель течения таймера
             angry_timeLeft -= Time.deltaTime * animObj.GetInteger("TimeUp") * angryMult;
             UpdateAngryTime();
@@ -98,7 +97,7 @@ public class CS_PlantBehaviour : MonoBehaviour
             animHelp.SetTrigger("Left"); // выключает "помощь"
             angry_timeLeft = 0;
             animPlayer.SetInteger("AngrySpirit", 1);
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 0.5f);
         }
     }
 }

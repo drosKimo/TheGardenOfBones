@@ -339,7 +339,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67233354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1441721660}
+        m_TargetAssemblyTypeName: CS_SceneChanger, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &67233354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5469,7 +5481,7 @@ GameObject:
   - component: {fileID: 661926555}
   - component: {fileID: 661926554}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DaytimeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5750,9 +5762,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 30
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 30
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5770,6 +5782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 7021095}
   slider: {fileID: 0}
+  timeLeft: 0
 --- !u!1 &950918381
 GameObject:
   m_ObjectHideFlags: 0
@@ -6958,6 +6971,50 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1441721659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441721661}
+  - component: {fileID: 1441721660}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1441721660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441721659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ec431f6af730a44883f1ea13c075a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1441721661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441721659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1471215085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8047,6 +8104,70 @@ PrefabInstance:
       propertyPath: menu.MenuPrefab
       value: 
       objectReference: {fileID: 461970997}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[0]
+      value: 
+      objectReference: {fileID: -1110987425, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[1]
+      value: 
+      objectReference: {fileID: 887916964, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[2]
+      value: 
+      objectReference: {fileID: 245895752, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[3]
+      value: 
+      objectReference: {fileID: -1195502077, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[4]
+      value: 
+      objectReference: {fileID: 210967451, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[5]
+      value: 
+      objectReference: {fileID: -1867118452, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: dayKeys.Array.data[6]
+      value: 
+      objectReference: {fileID: -235227540, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[0]
+      value: 
+      objectReference: {fileID: -1110987425, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[1]
+      value: 
+      objectReference: {fileID: 887916964, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[2]
+      value: 
+      objectReference: {fileID: 245895752, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[3]
+      value: 
+      objectReference: {fileID: -1195502077, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[4]
+      value: 
+      objectReference: {fileID: 210967451, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[5]
+      value: 
+      objectReference: {fileID: -1867118452, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
+    - target: {fileID: 8289508776245187412, guid: 5507ff9ce460efd49a6e537415f77b6e, type: 3}
+      propertyPath: menu.dayKeys.Array.data[6]
+      value: 
+      objectReference: {fileID: -235227540, guid: f1cbec8d77db76d49b35918e2a24bae6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8137,3 +8258,4 @@ SceneRoots:
   - {fileID: 1812281850}
   - {fileID: 461971001}
   - {fileID: 950918384}
+  - {fileID: 1441721661}

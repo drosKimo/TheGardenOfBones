@@ -11,7 +11,7 @@ public class CS_SettingGround : MonoBehaviour
 
     void Start()
     {
-        tilemap.size = new Vector3Int(23,21,0);
+        tilemap.size = new Vector3Int(tilemap.size.x, tilemap.size.y, 0);
         Debug.Log(tilemap.size);
     }
 

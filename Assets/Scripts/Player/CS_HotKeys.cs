@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,16 +24,19 @@ public class CS_HotKeys : MonoBehaviour
     CS_PlayerController controller;
     CS_SettingGround settingGround;
     CS_SpiritController spirit;
+    CS_DaytimeTimer daytimeTimer;
     public Menu menu = new Menu();
 
     int useCode = 0, // код для взаимодействия
         counterGround = 0, // счетчик тайлов земли
-        counterSpirits = 0; // счетчик поднятых призраков
+        counterSpirits = 0, // счетчик поднятых призраков
+        counterDays = 0; // счетчик дней
     bool stopped = false, moving = false;
     string collName;
 
     Component[] components;
     Animator spiritAnim, plantAnim, playerAnim;
+    public List<Sprite> dayKeys = new List<Sprite>(); // список спрайтов дней
 
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class CS_HotKeys : MonoBehaviour
         GameObject ground = GameObject.Find("GroundTest");
         settingGround = ground.GetComponent<CS_SettingGround>(); // для садовой земли
         playerAnim = controller.gameObject.GetComponent<Animator>();
+        daytimeTimer = GameObject.Find("Slider").GetComponent<CS_DaytimeTimer>(); // для работы с временем дня
     }
 
     void OnGUI()
@@ -92,7 +97,7 @@ public class CS_HotKeys : MonoBehaviour
                                 // Получает доступ к объекту-растению
                                 // plantAnim = компонент-аниматор, так что сначала нужно обратиться к его игровому объекту
                                 CS_PlantBehaviour plantBH = plantAnim.gameObject.GetComponent<CS_PlantBehaviour>();
-                                if (plantBH.timeLeft <= 0) // когда таймер вышел
+                                if (plantBH.timeLeft <= 0 && daytimeTimer.timeLeft > 0) // когда таймер вышел и день все еще идет
                                 {
                                     plantBH.animHelp.SetTrigger("Left"); // убирает пометку "помощь" над растением
 
@@ -108,7 +113,7 @@ public class CS_HotKeys : MonoBehaviour
                         }
                         break;
 
-                    case KeyCode.Tab: // пауза, остановить анимации
+                    case KeyCode.Escape: // пауза, остановить анимации
                         components = FindObjectsOfType<Animator>(); // получает все компоненты типа Animator на сцене
 
                         if (stopped)
@@ -122,10 +127,6 @@ public class CS_HotKeys : MonoBehaviour
                             StopAnimations();
                         }
                         break;
-
-                    case KeyCode.Escape:
-                        Application.Quit();
-                        break;
                     
                     case KeyCode.Q: // для дебага, чтобы знать координаты игрока
                         Debug.Log(gameObject.transform.position);
@@ -135,11 +136,18 @@ public class CS_HotKeys : MonoBehaviour
                         SceneManager.LoadScene("Test Scene");
                         break;
 
-                    /*case KeyCode.L: 
-                        CS_DaytimeTimer daytimeTimer = GameObject.Find("Slder").GetComponent<CS_DaytimeTimer>();
-                        Slider aaa = daytimeTimer.GetComponent<Slider>();
-                        daytimeText.text = "work time";
-                        break;*/
+                    case KeyCode.L: // сменить день (сброс таймера дня)
+                        if (daytimeTimer.timeLeft == 0 && counterDays != 7) // если дневное время вышло и прошло меньше 7 дней
+                        {
+                            Image dayImg = GameObject.Find("DaytimeImage").GetComponent<Image>();
+
+                            counterDays++;
+                            dayImg.sprite = dayKeys[counterDays];
+                            daytimeText.text = "work time";
+
+                            StartCoroutine(daytimeTimer.StartTimer()); // перезапуск таймера дня
+                        }
+                        break;
 
                     default:
                         break;

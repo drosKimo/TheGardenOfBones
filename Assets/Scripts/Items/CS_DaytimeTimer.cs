@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class CS_DaytimeTimer : MonoBehaviour
 
     // время в UnityEditor ставить в секундах
     [HideInInspector] public Slider slider;
-    float timeLeft;
+    [HideInInspector] public float timeLeft;
     Animator animPlayer;
 
     private void Awake()
@@ -17,17 +18,13 @@ public class CS_DaytimeTimer : MonoBehaviour
         slider = GetComponent<Slider>();
         animPlayer = GameObject.Find("Player").GetComponent<Animator>();
 
-        timeLeft = slider.value;
         StartCoroutine(StartTimer());
-    }
-
-    private void Update()
-    {
-        
     }
 
     public IEnumerator StartTimer()
     {
+        timeLeft = slider.maxValue;
+
         // каждый кадр тикает время
         while (timeLeft > 0)
         {
@@ -44,7 +41,6 @@ public class CS_DaytimeTimer : MonoBehaviour
         {
             timeLeft = 0;
             text.text = "night time";
-            //gameObject.SetActive(false);
         }
     }
 }
