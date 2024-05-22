@@ -245,6 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   help: {fileID: 3499575758932313440}
+  timeLeft: 0
+  angry_timeLeft: 0
+  animHelp: {fileID: 0}
 --- !u!1 &3499575758932313440
 GameObject:
   m_ObjectHideFlags: 0

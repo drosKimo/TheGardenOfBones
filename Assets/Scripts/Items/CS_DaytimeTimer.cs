@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CS_DaytimeTimer : MonoBehaviour
@@ -18,7 +19,8 @@ public class CS_DaytimeTimer : MonoBehaviour
         slider = GetComponent<Slider>();
         animPlayer = GameObject.Find("Player").GetComponent<Animator>();
 
-        StartCoroutine(StartTimer());
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+            StartCoroutine(StartTimer());
     }
 
     public IEnumerator StartTimer()

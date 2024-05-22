@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Menu
 {
     public GameObject MenuPrefab;
+    public GameObject SpeechPrefab;
 }
 
 public class CS_HotKeys : MonoBehaviour
@@ -25,17 +26,21 @@ public class CS_HotKeys : MonoBehaviour
     CS_SettingGround settingGround;
     CS_SpiritController spirit;
     CS_DaytimeTimer daytimeTimer;
+    CS_SpeechBoxScript boxScript;
     public Menu menu = new Menu();
 
     int useCode = 0, // код для взаимодействия
+        speechCode = 0, // код диалога
         counterGround = 0, // счетчик тайлов земли
         counterSpirits = 0, // счетчик поднятых призраков
-        counterDays = 0; // счетчик дней
+        counterHappySpirits = 0, // счетчик полных циклов у растений
+        counterDays = 0; // счетчик дней 
     bool stopped = false, moving = false;
     string collName;
 
     Component[] components;
     Animator spiritAnim, plantAnim, playerAnim;
+    TMP_Text textSpeech;
     public List<Sprite> dayKeys = new List<Sprite>(); // список спрайтов дней
 
     private void Awake()
@@ -43,9 +48,15 @@ public class CS_HotKeys : MonoBehaviour
         controller = GetComponent<CS_PlayerController>(); // для взаимодействий
 
         GameObject ground = GameObject.Find("GroundTest");
+
         settingGround = ground.GetComponent<CS_SettingGround>(); // для садовой земли
         playerAnim = controller.gameObject.GetComponent<Animator>();
-        daytimeTimer = GameObject.Find("Slider").GetComponent<CS_DaytimeTimer>(); // для работы с временем дня
+        daytimeTimer = GameObject.Find("Slider").GetComponent<CS_DaytimeTimer>();
+        boxScript = GameObject.Find("SpeechBoxScripter").GetComponent<CS_SpeechBoxScript>(); // для работы с временем
+        textSpeech = GameObject.Find("SP_text").GetComponent<TMP_Text>(); // для работы с текстом в диалоговом окне
+
+        GameObject speech = GameObject.Find("Speech");
+        speech.SetActive(false);
     }
 
     void OnGUI()
@@ -69,7 +80,7 @@ public class CS_HotKeys : MonoBehaviour
                         {
                             // 1 = поднять призрака
                             // 2 = посадка (в землю); на мышь
-                            // 3 = открытие двери (+ переход)
+                            // 3 = поговорить
                             // 4 = ухаживать за садом
 
                             case 1:
@@ -93,6 +104,25 @@ public class CS_HotKeys : MonoBehaviour
                                     Debug.Log("Некуда посадить!");
                                 }
                                 break;
+
+                            case 3:
+                                if (daytimeTimer.timeLeft > 0)
+                                {
+                                    menu.SpeechPrefab.SetActive(true);
+                                    Time.timeScale = 0f; // остановить время
+                                    speechCode = 0;
+
+                                    textSpeech.text = "Что такое? Солнце ещё высоко! Возвращайся к работе";
+                                }
+                                else
+                                {
+                                    menu.SpeechPrefab.SetActive(true);
+                                    speechCode = 1;
+
+                                    textSpeech.text = "Уже так поздно? А я и не заметил!";
+                                }
+                                break;
+
                             case 4:
                                 // Получает доступ к объекту-растению
                                 // plantAnim = компонент-аниматор, так что сначала нужно обратиться к его игровому объекту
@@ -106,6 +136,7 @@ public class CS_HotKeys : MonoBehaviour
                                     if (plantAnim.GetInteger("StateCounter") == 3)
                                     {
                                         counterSpirits--;
+                                        counterHappySpirits++;
                                         Destroy(plantAnim.gameObject, 1.5f);
                                     }
                                 }
@@ -113,41 +144,149 @@ public class CS_HotKeys : MonoBehaviour
                         }
                         break;
 
-                    case KeyCode.Escape: // пауза, остановить анимации
-                        components = FindObjectsOfType<Animator>(); // получает все компоненты типа Animator на сцене
-
-                        if (stopped)
+                    case KeyCode.Space: // закрыть/переключить диалоговое окно
+                        if (SceneManager.GetActiveScene().name == "Tutorial")
                         {
-                            menu.MenuPrefab.gameObject.SetActive(false);
-                            PlayAnimations();
+                            switch (speechCode)
+                            {
+                                // 0 = основы
+                                // 1 = закрыть диалог
+                                // 2 = проверка диалога
+                                // 3 = подойти к зверьку
+                                // 4 = о посадке
+                                // 5 = о готовности
+                                // 6 = конец обучения
+
+                                case 0:
+                                    textSpeech.text = "Давай начнём с основ. Вскопай землю дважды";
+                                    speechCode = 1;
+                                    break;
+
+                                case 1:
+                                    menu.SpeechPrefab.SetActive(false);
+                                    speechCode = 2;
+                                    break;
+
+                                case 2:
+                                    switch (boxScript.counter)
+                                    {
+                                        case 3:
+                                            textSpeech.text = "Надеюсь, тебя не нужно учить ходить";
+                                            speechCode = 3;
+                                            break;
+                                        case 5:
+                                            textSpeech.text = "Но ты не сможешь работать пока он это делает...";
+                                            speechCode = 4;
+                                            break;
+                                        case 7:
+                                            textSpeech.text = "Растение исчезнет, если ты не будешь ухаживать за ним";
+                                            speechCode = 5;
+                                            break;
+                                        default:
+                                            menu.SpeechPrefab.SetActive(false);
+                                            break;
+                                    }
+                                    break;
+
+                                case 3:
+                                    textSpeech.text = "Итак! Видишь этого зверька рядом? Подойди к нему";
+                                    speechCode = 1;
+                                    break;
+
+                                case 4:
+                                    textSpeech.text = "Попробуй посадить его";
+                                    speechCode = 1;
+                                    break;
+
+                                case 5:
+                                    textSpeech.text = "Ну вот и всё, теперь ты готов к работе!";
+                                    speechCode = 6;
+                                    break;
+
+                                case 6:
+                                    SceneManager.LoadScene("MainScene");
+                                    break;
+                            }
                         }
                         else
                         {
-                            menu.MenuPrefab.gameObject.SetActive(true);
-                            StopAnimations();
+                            switch (speechCode)
+                            {
+                                // 0 = закрыть диалог
+                                // 1 = продолжение диалога
+                                // 2 = смена дня
+                                // 3 = конец игры
+
+                                case 0: // день еще не прошел
+                                    menu.SpeechPrefab.SetActive(false);
+                                    Time.timeScale = 1f;
+                                    break; 
+
+                                case 1:
+                                    if (counterDays != 7) // если дневное время вышло и прошло меньше 7 дней
+                                    {
+                                        textSpeech.text = "Ладно, за работу!";
+                                        speechCode = 2;
+                                    }
+                                    else if (counterDays == 7)
+                                    {
+                                        textSpeech.text = $"Спасибо за помощь, ты успокоил {counterHappySpirits} душ. Прощай";
+                                        speechCode = 3;
+                                    }
+                                    
+                                    break;
+
+                                case 2:
+                                    menu.SpeechPrefab.SetActive(false);
+
+                                    Image dayImg = GameObject.Find("DaytimeImage").GetComponent<Image>();
+
+                                    counterDays++;
+                                    dayImg.sprite = dayKeys[counterDays];
+                                    daytimeText.text = "work time";
+
+                                    StartCoroutine(daytimeTimer.StartTimer()); // перезапуск таймера дня
+
+                                    break;
+
+                                case 3:
+                                    Application.Quit();
+                                    break;
+                            }
+                        }
+                        break;
+
+                    case KeyCode.Escape: // пауза, остановить анимации
+
+                        // Специально для туториала, свойства немного другие
+                        if (SceneManager.GetActiveScene().name == "Tutorial")
+                        {
+                            SceneManager.LoadScene("MainScene");
+                        }
+                        else
+                        {
+                            components = FindObjectsOfType<Animator>(); // получает все компоненты типа Animator на сцене
+
+                            if (stopped)
+                            {
+                                menu.MenuPrefab.gameObject.SetActive(false);
+                                PlayAnimations();
+                            }
+                            else
+                            {
+                                menu.MenuPrefab.gameObject.SetActive(true);
+                                StopAnimations();
+                            }
                         }
                         break;
                     
-                    case KeyCode.Q: // для дебага, чтобы знать координаты игрока
+                    /*case KeyCode.Q: // для дебага, чтобы знать координаты игрока
                         Debug.Log(gameObject.transform.position);
                         break;
 
-                    case KeyCode.F: // перезагрузка сцены
+                    case KeyCode.F: // перезагрузка сцены, тоже для дебага
                         SceneManager.LoadScene("Test Scene");
-                        break;
-
-                    case KeyCode.L: // сменить день (сброс таймера дня)
-                        if (daytimeTimer.timeLeft == 0 && counterDays != 7) // если дневное время вышло и прошло меньше 7 дней
-                        {
-                            Image dayImg = GameObject.Find("DaytimeImage").GetComponent<Image>();
-
-                            counterDays++;
-                            dayImg.sprite = dayKeys[counterDays];
-                            daytimeText.text = "work time";
-
-                            StartCoroutine(daytimeTimer.StartTimer()); // перезапуск таймера дня
-                        }
-                        break;
+                        break;*/
 
                     default:
                         break;
@@ -227,10 +366,18 @@ public class CS_HotKeys : MonoBehaviour
                     collName = collision.transform.parent.name; // получаем имя родительского объекта из триггера, в котором стоим
                 }
                 break;
+
             case "Garden":
                 if (useCode == 0)
                 {
                     useCode = 4;
+                }
+                break;
+
+            case "Reaper":
+                if (useCode == 0)
+                {
+                    useCode = 3;
                 }
                 break;
         }
@@ -255,6 +402,11 @@ public class CS_HotKeys : MonoBehaviour
                     collName = null; // обнуляет имя объекта
                 }
                 break;
+
+            case "Reaper":
+                useCode = 0;
+                break;
+
             case "Garden":
                 useCode = 0;
                 break;

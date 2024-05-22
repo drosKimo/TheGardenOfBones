@@ -119,7 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 3241376743273458279, guid: 770ce6640964c6f4782d85bd5a8b94c4, type: 3}
+  daytimeText: {fileID: 0}
   obj: {fileID: 0}
+  menu:
+    MenuPrefab: {fileID: 0}
+    SpeechPrefab: {fileID: 0}
+  dayKeys: []
 --- !u!50 &8879021063825650548
 Rigidbody2D:
   serializedVersion: 4
