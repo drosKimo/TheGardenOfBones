@@ -56,7 +56,9 @@ public class CS_HotKeys : MonoBehaviour
         textSpeech = GameObject.Find("SP_text").GetComponent<TMP_Text>(); // для работы с текстом в диалоговом окне
 
         GameObject speech = GameObject.Find("Speech");
-        speech.SetActive(false);
+        
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+            speech.SetActive(false);
     }
 
     void OnGUI()
@@ -223,7 +225,7 @@ public class CS_HotKeys : MonoBehaviour
                                     break; 
 
                                 case 1:
-                                    if (counterDays != 7) // если дневное время вышло и прошло меньше 7 дней
+                                    if (counterDays == 7) // если дневное время вышло и прошло меньше 7 дней
                                     {
                                         textSpeech.text = "Ладно, за работу!";
                                         speechCode = 2;
@@ -279,7 +281,11 @@ public class CS_HotKeys : MonoBehaviour
                             }
                         }
                         break;
-                    
+
+                    case KeyCode.L: // пропуск дня для дебага
+                        daytimeTimer.timeLeft = 0;
+                        break;
+
                     /*case KeyCode.Q: // для дебага, чтобы знать координаты игрока
                         Debug.Log(gameObject.transform.position);
                         break;

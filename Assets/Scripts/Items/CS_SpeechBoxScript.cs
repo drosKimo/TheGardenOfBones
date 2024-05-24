@@ -55,9 +55,4 @@ public class CS_SpeechBoxScript : MonoBehaviour
                 break;
         }
     }
-
-    private void MainScene()
-    {
-        
-    }
 }
