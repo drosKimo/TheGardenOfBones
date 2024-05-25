@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class CS_PlantBehaviour : MonoBehaviour
 {
-    // здесь нужен будет таймер о обработчик системы ухода за садом
-
     [SerializeField] public GameObject help;
     [HideInInspector] public float timeLeft, angry_timeLeft; // врем€ в секундах
     [HideInInspector] public Animator animHelp;
 
     TMP_Text text;
     Animator animObj, animPlayer;
-    // даст возможность приостановить или ускорить "злое" врем€
-    int angryMult = 1;
+    
+    int angryMult = 1; // даст возможность приостановить или ускорить "злое" врем€
 
     private void Awake()
     {
@@ -82,7 +80,7 @@ public class CS_PlantBehaviour : MonoBehaviour
         {
             animHelp.SetTrigger("Triggered"); // включает подсказку "помощь"
             timeLeft = 0;
-            angry_timeLeft = 30;
+            angry_timeLeft = 45;
             angryMult = 1;
             StartCoroutine(AngryTimer()); // "злой" таймер
         }

@@ -61,7 +61,10 @@ public class CS_HotKeys : MonoBehaviour
         GameObject speech = GameObject.Find("Speech");
         
         if (SceneManager.GetActiveScene().name != "Tutorial")
-            speech.SetActive(false);
+        {
+            speech.SetActive(false); // закрыть всплывающее диалоговое окно
+            Time.timeScale = 1f; // чтобы всегда при запуске сцены время шло
+        }
     }
 
     void OnGUI()
@@ -106,9 +109,16 @@ public class CS_HotKeys : MonoBehaviour
 
                                     StartCoroutine(player_use()); // корутина с таймингами анимации использования
                                 }
-                                else
+                                else if (SceneManager.GetActiveScene().name != "Tutorial")
                                 {
-                                    Debug.Log("Некуда посадить!");
+                                    menu.SpeechPrefab.SetActive(true);
+
+                                    if (daytimeTimer.timeLeft == 0 )
+                                        textSpeech.text = "Похоже, день закончился. Возвращайся ко мне";
+                                    else
+                                        textSpeech.text = "Недостаточно мест для посадки";
+
+                                    speechCode = 0;
                                 }
                                 break;
 
@@ -119,7 +129,14 @@ public class CS_HotKeys : MonoBehaviour
                                     Time.timeScale = 0f; // остановить время
                                     speechCode = 0;
 
-                                    textSpeech.text = "Что такое? Солнце ещё высоко! Возвращайся к работе";
+                                    if (counterTotalSpirits == playerAnim.GetInteger("SpawnedCreatures"))
+                                    {
+                                        textSpeech.text = "Ого, уже закончил(а)? Ну хорошо, будем считать, что день уже закончился";
+                                        daytimeTimer.timeLeft = 0;
+                                        speechCode = 1;
+                                    }
+                                    else
+                                        textSpeech.text = "Что такое? Солнце ещё высоко! Возвращайся к работе";
                                 }
                                 else
                                 {
@@ -135,6 +152,7 @@ public class CS_HotKeys : MonoBehaviour
                                 // Получает доступ к объекту-растению
                                 // plantAnim = компонент-аниматор, так что сначала нужно обратиться к его игровому объекту
                                 CS_PlantBehaviour plantBH = plantAnim.gameObject.GetComponent<CS_PlantBehaviour>();
+
                                 if (plantBH.timeLeft <= 0 && daytimeTimer.timeLeft > 0) // когда таймер вышел и день все еще идет
                                 {
                                     plantBH.animHelp.SetTrigger("Left"); // убирает пометку "помощь" над растением
@@ -148,6 +166,11 @@ public class CS_HotKeys : MonoBehaviour
                                         Destroy(plantAnim.gameObject, 1.5f);
                                     }
                                 }
+                                else if (plantBH.timeLeft <= 0 && SceneManager.GetActiveScene().name == "Tutorial")
+                                {
+                                    plantBH.animHelp.SetTrigger("Left"); // убирает пометку "помощь" над растением
+                                    plantAnim.SetInteger("StateCounter", plantAnim.GetInteger("StateCounter") + 1); // добавляет стадию роста
+                                }
                                 break;
                         }
                         break;
@@ -155,6 +178,7 @@ public class CS_HotKeys : MonoBehaviour
                     case KeyCode.Space: // закрыть/переключить диалоговое окно
                         if (SceneManager.GetActiveScene().name == "Tutorial")
                         {
+                            Debug.Log(speechCode);
                             switch (speechCode)
                             {
                                 // 0 = основы
@@ -173,6 +197,7 @@ public class CS_HotKeys : MonoBehaviour
                                 case 1:
                                     menu.SpeechPrefab.SetActive(false);
                                     speechCode = 2;
+                                    Time.timeScale = 1f;
                                     break;
 
                                 case 2:
@@ -191,6 +216,7 @@ public class CS_HotKeys : MonoBehaviour
                                             speechCode = 5;
                                             break;
                                         default:
+                                            Time.timeScale = 1f;
                                             menu.SpeechPrefab.SetActive(false);
                                             break;
                                     }
@@ -212,6 +238,7 @@ public class CS_HotKeys : MonoBehaviour
                                     break;
 
                                 case 6:
+                                    Time.timeScale = 1f;
                                     SceneManager.LoadScene("MainScene");
                                     break;
                             }
@@ -236,28 +263,9 @@ public class CS_HotKeys : MonoBehaviour
                                     if (counterDays < 6) // если дневное время вышло и прошло меньше 7 дней
                                     {
                                         textSpeech.text = "Ладно, за работу!";
-                                        Time.timeScale = 1f;
                                         speechCode = 2;
 
-                                        // все триггеры объектов-призраков под удаление
-                                        GameObject[] wolf = new GameObject[GameObject.FindGameObjectsWithTag("SpiritTrigger").Length];
-                                        wolf = GameObject.FindGameObjectsWithTag("SpiritTrigger");
-
-                                        foreach (GameObject sp in wolf)
-                                        {
-                                            // находит каждого волка и удаляет
-                                            Destroy(sp.transform.parent.gameObject);
-                                        }
-
-                                        // а затем спавнит новых
-                                        GameObject[] spawn = new GameObject[GameObject.FindGameObjectsWithTag("Respawn").Length];
-                                        spawn = GameObject.FindGameObjectsWithTag("Respawn");
-
-                                        foreach(GameObject sp in spawn)
-                                        {
-                                            spawnCreature = sp.GetComponent<CS_SpawnCreature>();
-                                            spawnCreature.Spawn();
-                                        }
+                                        SpiritReset();
                                     }
                                     else if (counterDays == 6) // конец игры
                                     {
@@ -272,6 +280,7 @@ public class CS_HotKeys : MonoBehaviour
                                     break;
 
                                 case 2:
+                                    Time.timeScale = 1f;
                                     menu.SpeechPrefab.SetActive(false);
 
                                     Image dayImg = GameObject.Find("DaytimeImage").GetComponent<Image>();
@@ -314,12 +323,12 @@ public class CS_HotKeys : MonoBehaviour
                                         else if (happyPercent >= 45 && happyPercent < 75) // 45 - 74.99 %
                                             textSpeech.text = $"По крайней мере, ты старался(ась). Из {counterTotalSpirits} очистилось только {counterHappySpirits}. Можешь идти.";
                                         else if (happyPercent >= 75 && happyPercent < 100) // 75 - 99.99 %
-                                            textSpeech.text = $"Чудненько! Ты смог спасти целых {counterHappySpirits} душ из {counterTotalSpirits}. Спасибо, прощай!";
+                                            textSpeech.text = $"Чудненько! Ты смог очистить целых {counterHappySpirits} душ из {counterTotalSpirits}. Спасибо, прощай!";
                                     }
                                     else if (counterTotalSpirits == 0)
                                         textSpeech.text = "Ты даже не попытался(ась)! Проваливай!";
                                     else
-                                        textSpeech.text = "Все души, которые ты посадил, спаслись. Спасибо, прощай!";
+                                        textSpeech.text = "Все души, которые ты посадил, очистились. Спасибо, прощай!";
 
                                     speechCode = 3;
                                     break;
@@ -388,9 +397,16 @@ public class CS_HotKeys : MonoBehaviour
                                 Debug.Log("Занято");
                             }
                         }
-                        else if (hit.collider.IsUnityNull() && settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2 && !stopped) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
+                        else if (hit.collider.IsUnityNull() &&
+                                settingGround.tilemap.GetTile(settingGround.tilePos) == null &&
+                                useCode != 2 && !stopped && !boxScript.isActiveAndEnabled)
                         {
-                            settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
+                            // поставить землю можно только если под мышью нет других объектов + запрет на установку, пока:
+                            // 1. Мы не ведём за собой призрака
+                            // 2. НЕ открыто меню
+                            // 3. НЕ запущен диалог
+
+                            settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить сам тайл
                             counterGround++;
                         }
                         break;
@@ -399,10 +415,13 @@ public class CS_HotKeys : MonoBehaviour
                         // удалить возможно только если под мышью есть тайл + запрет на удаление, пока:
                         // 1. За нами ходит призрак
                         // 2. Клетка уже занята растением или на нее идет призрак
+                        // 3. Открыто меню
+                        // 4. Запущен диалог
                         
                         if (settingGround.tilemap.GetTile(settingGround.tilePos) != null &&
                             settingGround.tilemap.GetTile(settingGround.tilePos).name == "RT_GardenGround" &&
-                            useCode !=2 && hit.collider.IsUnityNull() && !moving)
+                            useCode !=2 && hit.collider.IsUnityNull() && !moving &&
+                            !boxScript.isActiveAndEnabled)
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, null); // удалить тайл
                             counterGround--;
@@ -530,5 +549,28 @@ public class CS_HotKeys : MonoBehaviour
         // разрешает игроку двигаться и включает его аниматор
         controller.speed = controller.current_speed;
         controller.player_anim.enabled = true;
+    }
+
+    void SpiritReset()
+    {
+        // все триггеры объектов-призраков под удаление
+        GameObject[] wolf = new GameObject[GameObject.FindGameObjectsWithTag("SpiritTrigger").Length];
+        wolf = GameObject.FindGameObjectsWithTag("SpiritTrigger");
+
+        foreach (GameObject sp in wolf)
+        {
+            // находит каждого волка и удаляет
+            Destroy(sp.transform.parent.gameObject);
+        }
+
+        // а затем спавнит новых
+        GameObject[] spawn = new GameObject[GameObject.FindGameObjectsWithTag("Respawn").Length];
+        spawn = GameObject.FindGameObjectsWithTag("Respawn");
+
+        foreach (GameObject sp in spawn)
+        {
+            spawnCreature = sp.GetComponent<CS_SpawnCreature>();
+            spawnCreature.Spawn();
+        }
     }
 }

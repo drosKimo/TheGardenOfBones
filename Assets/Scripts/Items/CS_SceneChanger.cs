@@ -19,4 +19,14 @@ public class CS_SceneChanger : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void WebPage()
+    {
+        Application.OpenURL("https://droskimo.ru");
+    }
+
+    public void About()
+    {
+        Application.OpenURL("https://vk.com/death.trap");
+    }
 }

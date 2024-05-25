@@ -16,6 +16,7 @@ public class CS_SpeechBoxScript : MonoBehaviour
     private void OnEnable()
     {
         counter++;
+        Time.timeScale = 0f;
         TutorialScene();
     }
 
