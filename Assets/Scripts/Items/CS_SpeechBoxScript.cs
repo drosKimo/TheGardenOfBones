@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
             // “ŒÀ‹ Œ ƒÀﬂ “”“Œ–»¿À¿
 public class CS_SpeechBoxScript : MonoBehaviour

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CS_PlantBehaviour : MonoBehaviour
@@ -84,7 +82,7 @@ public class CS_PlantBehaviour : MonoBehaviour
         {
             animHelp.SetTrigger("Triggered"); // включает подсказку "помощь"
             timeLeft = 0;
-            angry_timeLeft = 10;
+            angry_timeLeft = 30;
             angryMult = 1;
             StartCoroutine(AngryTimer()); // "злой" таймер
         }

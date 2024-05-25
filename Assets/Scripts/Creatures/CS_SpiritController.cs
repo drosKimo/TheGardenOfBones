@@ -6,7 +6,7 @@ public class CS_SpiritController : MonoBehaviour
 {
     [HideInInspector] public Animator spiritAnim;
     [HideInInspector] public bool moveToPoint = false;
-    [SerializeField] Transform playerTransform;
+    Transform playerTransform;
     [SerializeField] float speed;
 
     CS_SpiritHelp spiritHelp;
@@ -15,12 +15,15 @@ public class CS_SpiritController : MonoBehaviour
 
     NavMeshAgent meshAgent;
     SpriteRenderer spiritRender;
+    Animator playerAnim;
 
     public Vector3 nextPosition;
-    bool guided = false;
+    public bool guided = false;
 
     private void Awake()
     {
+        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        playerAnim = playerTransform.gameObject.GetComponent<Animator>();
         spiritAnim = GetComponent<Animator>();
         spiritHelp = GetComponentInChildren<CS_SpiritHelp>();
         meshAgent = GetComponent<NavMeshAgent>();
@@ -33,13 +36,16 @@ public class CS_SpiritController : MonoBehaviour
     {
         switch (spiritAnim.GetInteger("SetSpirit"))
         {
+
             case 1:
+                playerAnim.SetBool("Guid", true);
                 guided = true;
                 spiritAnim.SetInteger("SetSpirit", 0);
                 spiritHelp.anim.SetTrigger("Left");
                 StartCoroutine(HelpDestroyer());
                 break;
             case 2:
+                playerAnim.SetBool("Guid", false);
                 spiritAnim.SetInteger("SetSpirit", 0);
                 spiritAnim.SetTrigger("Planted");
                 StartCoroutine (TriggerDestroyer());

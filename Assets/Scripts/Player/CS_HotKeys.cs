@@ -27,16 +27,19 @@ public class CS_HotKeys : MonoBehaviour
     CS_SpiritController spirit;
     CS_DaytimeTimer daytimeTimer;
     CS_SpeechBoxScript boxScript;
+    CS_SpawnCreature spawnCreature;
     public Menu menu = new Menu();
 
     int useCode = 0, // код для взаимодействия
         speechCode = 0, // код диалога
         counterGround = 0, // счетчик тайлов земли
-        counterSpirits = 0, // счетчик поднятых призраков
+        counterSpirits = 0, // счетчик поднятых призраков (прямо сейчас)
         counterHappySpirits = 0, // счетчик полных циклов у растений
+        counterTotalSpirits = 0, // счетчик сколько ВСЕГО было поднято и посажено призраков
         counterDays = 0; // счетчик дней 
     bool stopped = false, moving = false;
     string collName;
+    float finalPercent;
 
     Component[] components;
     Animator spiritAnim, plantAnim, playerAnim;
@@ -91,7 +94,9 @@ public class CS_HotKeys : MonoBehaviour
                                 if (counterGround > counterSpirits && daytimeText.text == "work time") 
                                 {
                                     counterSpirits++;
+                                    counterTotalSpirits++;
                                     useCode = 2;
+
                                     obj = GameObject.Find(collName); // поиск объекта по имени 
                                     spiritAnim = obj.GetComponent<Animator>();
                                     spirit = obj.GetComponent<CS_SpiritController>();
@@ -120,6 +125,7 @@ public class CS_HotKeys : MonoBehaviour
                                 {
                                     menu.SpeechPrefab.SetActive(true);
                                     speechCode = 1;
+                                    Time.timeScale = 0f; // остановить время
 
                                     textSpeech.text = "Уже так поздно? А я и не заметил!";
                                 }
@@ -217,7 +223,9 @@ public class CS_HotKeys : MonoBehaviour
                                 // 0 = закрыть диалог
                                 // 1 = продолжение диалога
                                 // 2 = смена дня
-                                // 3 = конец игры
+                                // 3 = выход из игры
+                                // 4 = результат выработки (реакция)
+                                // 5 = результат садоводства (реакция)
 
                                 case 0: // день еще не прошел
                                     menu.SpeechPrefab.SetActive(false);
@@ -225,17 +233,42 @@ public class CS_HotKeys : MonoBehaviour
                                     break; 
 
                                 case 1:
-                                    if (counterDays == 7) // если дневное время вышло и прошло меньше 7 дней
+                                    if (counterDays < 6) // если дневное время вышло и прошло меньше 7 дней
                                     {
                                         textSpeech.text = "Ладно, за работу!";
+                                        Time.timeScale = 1f;
                                         speechCode = 2;
+
+                                        // все триггеры объектов-призраков под удаление
+                                        GameObject[] wolf = new GameObject[GameObject.FindGameObjectsWithTag("SpiritTrigger").Length];
+                                        wolf = GameObject.FindGameObjectsWithTag("SpiritTrigger");
+
+                                        foreach (GameObject sp in wolf)
+                                        {
+                                            // находит каждого волка и удаляет
+                                            Destroy(sp.transform.parent.gameObject);
+                                        }
+
+                                        // а затем спавнит новых
+                                        GameObject[] spawn = new GameObject[GameObject.FindGameObjectsWithTag("Respawn").Length];
+                                        spawn = GameObject.FindGameObjectsWithTag("Respawn");
+
+                                        foreach(GameObject sp in spawn)
+                                        {
+                                            spawnCreature = sp.GetComponent<CS_SpawnCreature>();
+                                            spawnCreature.Spawn();
+                                        }
                                     }
-                                    else if (counterDays == 7)
+                                    else if (counterDays == 6) // конец игры
                                     {
-                                        textSpeech.text = $"Спасибо за помощь, ты успокоил {counterHappySpirits} душ. Прощай";
-                                        speechCode = 3;
+                                        // НЕ РАБОТАЕТ С DOUBLE
+                                        // осталось посчитать выработку игрока
+                                        finalPercent = ((float)counterTotalSpirits / (float)playerAnim.GetInteger("SpawnedCreatures")) * 100;
+                                        finalPercent = (float)System.Math.Round(finalPercent, 2); // округление до 2 знаков после запятой
+
+                                        textSpeech.text = $"Ты достиг выработки в {finalPercent}%";
+                                        speechCode = 4;
                                     }
-                                    
                                     break;
 
                                 case 2:
@@ -248,11 +281,47 @@ public class CS_HotKeys : MonoBehaviour
                                     daytimeText.text = "work time";
 
                                     StartCoroutine(daytimeTimer.StartTimer()); // перезапуск таймера дня
-
                                     break;
 
                                 case 3:
                                     Application.Quit();
+                                    break;
+
+                                case 4:
+                                    if (finalPercent < 25) // 0 - 24.99 %
+                                        textSpeech.text = "Я правда должен комментировать это?..";
+                                    else if (finalPercent >= 25 && finalPercent < 50) // 25 - 49.99 %
+                                        textSpeech.text = "Могло быть и лучше...";
+                                    else if (finalPercent >= 50 && finalPercent < 75) // 50 - 74.99 %
+                                        textSpeech.text = "Неплохо.";
+                                    else if (finalPercent >= 75 && finalPercent < 100) // 75 - 99.99 %
+                                        textSpeech.text = "Отличная работа!";
+                                    else if (finalPercent == 100) // 100 %
+                                        textSpeech.text = "Ничего себе! Ты успел(а) даже больше, чем могу я сам!";
+
+                                    speechCode = 5;
+                                    break;
+
+                                case 5:
+                                    float happyPercent = ((float)counterHappySpirits / (float)counterTotalSpirits) * 100;
+
+                                    if (counterTotalSpirits - counterHappySpirits > 0)
+                                    {
+                                        if (happyPercent == 0) // 0 %
+                                            textSpeech.text = "Это ведь просто ужас! Проваливай!";
+                                        else if (happyPercent < 45) // 0.01 - 44.99 %
+                                            textSpeech.text = $"Бедные души... Из {counterTotalSpirits} очистилось всего {counterHappySpirits}. Прошу, уйди.";
+                                        else if (happyPercent >= 45 && happyPercent < 75) // 45 - 74.99 %
+                                            textSpeech.text = $"По крайней мере, ты старался(ась). Из {counterTotalSpirits} очистилось только {counterHappySpirits}. Можешь идти.";
+                                        else if (happyPercent >= 75 && happyPercent < 100) // 75 - 99.99 %
+                                            textSpeech.text = $"Чудненько! Ты смог спасти целых {counterHappySpirits} душ из {counterTotalSpirits}. Спасибо, прощай!";
+                                    }
+                                    else if (counterTotalSpirits == 0)
+                                        textSpeech.text = "Ты даже не попытался(ась)! Проваливай!";
+                                    else
+                                        textSpeech.text = "Все души, которые ты посадил, спаслись. Спасибо, прощай!";
+
+                                    speechCode = 3;
                                     break;
                             }
                         }
@@ -284,17 +353,6 @@ public class CS_HotKeys : MonoBehaviour
 
                     case KeyCode.L: // пропуск дня для дебага
                         daytimeTimer.timeLeft = 0;
-                        break;
-
-                    /*case KeyCode.Q: // для дебага, чтобы знать координаты игрока
-                        Debug.Log(gameObject.transform.position);
-                        break;
-
-                    case KeyCode.F: // перезагрузка сцены, тоже для дебага
-                        SceneManager.LoadScene("Test Scene");
-                        break;*/
-
-                    default:
                         break;
                 }
             }
@@ -330,7 +388,7 @@ public class CS_HotKeys : MonoBehaviour
                                 Debug.Log("Занято");
                             }
                         }
-                        else if (settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2 && !stopped) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
+                        else if (hit.collider.IsUnityNull() && settingGround.tilemap.GetTile(settingGround.tilePos) == null && useCode != 2 && !stopped) // вторая проверка нужна для запрета размещения замли, пока мы ведем призрака
                         {
                             settingGround.tilemap.SetTile(settingGround.tilePos, settingGround.tile); // поставить тайл
                             counterGround++;
@@ -410,7 +468,10 @@ public class CS_HotKeys : MonoBehaviour
                 break;
 
             case "Reaper":
-                useCode = 0;
+                if (playerAnim.GetBool("Guid") == false)
+                    useCode = 0;
+                else
+                    useCode = 2;
                 break;
 
             case "Garden":
