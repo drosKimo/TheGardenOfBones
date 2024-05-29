@@ -27,6 +27,11 @@ public class CS_SceneChanger : MonoBehaviour
 
     public void About()
     {
-        Application.OpenURL("https://vk.com/death.trap");
+        Application.OpenURL("https://www.furaffinity.net/user/droskimo");
+    }
+
+    public void Support()
+    {
+        Application.OpenURL("https://boosty.to/droskimo");
     }
 }
