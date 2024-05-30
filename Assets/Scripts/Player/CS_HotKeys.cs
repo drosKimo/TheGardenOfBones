@@ -114,9 +114,9 @@ public class CS_HotKeys : MonoBehaviour
                                     menu.SpeechPrefab.SetActive(true);
 
                                     if (daytimeTimer.timeLeft == 0 )
-                                        textSpeech.text = "Похоже, день закончился. Возвращайся ко мне";
+                                        textSpeech.text = "Looks like the day is over. Come back to me";
                                     else
-                                        textSpeech.text = "Недостаточно мест для посадки";
+                                        textSpeech.text = "Not enough gardens";
 
                                     speechCode = 0;
                                 }
@@ -131,12 +131,12 @@ public class CS_HotKeys : MonoBehaviour
 
                                     if (counterTotalSpirits == playerAnim.GetInteger("SpawnedCreatures"))
                                     {
-                                        textSpeech.text = "Ого, уже закончил(а)? Ну хорошо, будем считать, что день уже закончился";
+                                        textSpeech.text = "Wow, have you finished yet? Well, let's assume that the day is already over";
                                         daytimeTimer.timeLeft = 0;
                                         speechCode = 1;
                                     }
                                     else
-                                        textSpeech.text = "Что такое? Солнце ещё высоко! Возвращайся к работе";
+                                        textSpeech.text = "What is it? The sun is still high! Get back to work";
                                 }
                                 else
                                 {
@@ -144,7 +144,7 @@ public class CS_HotKeys : MonoBehaviour
                                     speechCode = 1;
                                     Time.timeScale = 0f; // остановить время
 
-                                    textSpeech.text = "Уже так поздно? А я и не заметил!";
+                                    textSpeech.text = "Is it that late already? I didn't even notice!";
                                 }
                                 break;
 
@@ -190,7 +190,7 @@ public class CS_HotKeys : MonoBehaviour
                                 // 6 = конец обучения
 
                                 case 0:
-                                    textSpeech.text = "Давай начнём с основ. Вскопай землю дважды";
+                                    textSpeech.text = "Let's start with the basics. Dig up the ground twice";
                                     speechCode = 1;
                                     break;
 
@@ -204,15 +204,15 @@ public class CS_HotKeys : MonoBehaviour
                                     switch (boxScript.counter)
                                     {
                                         case 3:
-                                            textSpeech.text = "Надеюсь, тебя не нужно учить ходить";
+                                            textSpeech.text = "I hope you don't need to be taught to walk";
                                             speechCode = 3;
                                             break;
                                         case 5:
-                                            textSpeech.text = "Но ты не сможешь работать пока он это делает...";
+                                            textSpeech.text = "But you won't be able to work while it's doing it...";
                                             speechCode = 4;
                                             break;
                                         case 7:
-                                            textSpeech.text = "Растение исчезнет, если ты не будешь ухаживать за ним";
+                                            textSpeech.text = "The plant will disappear if you don't take care of it";
                                             speechCode = 5;
                                             break;
                                         default:
@@ -223,17 +223,17 @@ public class CS_HotKeys : MonoBehaviour
                                     break;
 
                                 case 3:
-                                    textSpeech.text = "Итак! Видишь этого зверька рядом? Подойди к нему";
+                                    textSpeech.text = "So! Do you see this animal next to you? Come to it";
                                     speechCode = 1;
                                     break;
 
                                 case 4:
-                                    textSpeech.text = "Попробуй посадить его";
+                                    textSpeech.text = "Try to plant it";
                                     speechCode = 1;
                                     break;
 
                                 case 5:
-                                    textSpeech.text = "Ну вот и всё, теперь ты готов к работе!";
+                                    textSpeech.text = "Well, that's it, now you're ready to work!";
                                     speechCode = 6;
                                     break;
 
@@ -262,7 +262,7 @@ public class CS_HotKeys : MonoBehaviour
                                 case 1:
                                     if (counterDays < 6) // если дневное время вышло и прошло меньше 7 дней
                                     {
-                                        textSpeech.text = "Ладно, за работу!";
+                                        textSpeech.text = "All right, back to work!";
                                         speechCode = 2;
 
                                         SpiritReset();
@@ -274,7 +274,7 @@ public class CS_HotKeys : MonoBehaviour
                                         finalPercent = ((float)counterTotalSpirits / (float)playerAnim.GetInteger("SpawnedCreatures")) * 100;
                                         finalPercent = (float)System.Math.Round(finalPercent, 2); // округление до 2 знаков после запятой
 
-                                        textSpeech.text = $"Ты достиг выработки в {finalPercent}%";
+                                        textSpeech.text = $"You've reached production at {finalPercent}%";
                                         speechCode = 4;
                                     }
                                     break;
@@ -298,15 +298,15 @@ public class CS_HotKeys : MonoBehaviour
 
                                 case 4:
                                     if (finalPercent < 25) // 0 - 24.99 %
-                                        textSpeech.text = "Я правда должен комментировать это?..";
+                                        textSpeech.text = "Do I really have to comment on this?..";
                                     else if (finalPercent >= 25 && finalPercent < 50) // 25 - 49.99 %
-                                        textSpeech.text = "Могло быть и лучше...";
+                                        textSpeech.text = "It could have been better...";
                                     else if (finalPercent >= 50 && finalPercent < 75) // 50 - 74.99 %
-                                        textSpeech.text = "Неплохо.";
+                                        textSpeech.text = "Not bad.";
                                     else if (finalPercent >= 75 && finalPercent < 100) // 75 - 99.99 %
-                                        textSpeech.text = "Отличная работа!";
+                                        textSpeech.text = "Great job!";
                                     else if (finalPercent == 100) // 100 %
-                                        textSpeech.text = "Ничего себе! Ты успел(а) даже больше, чем могу я сам!";
+                                        textSpeech.text = "Wow! You've done even more than I can do myself!";
 
                                     speechCode = 5;
                                     break;
@@ -317,18 +317,18 @@ public class CS_HotKeys : MonoBehaviour
                                     if (counterTotalSpirits - counterHappySpirits > 0)
                                     {
                                         if (happyPercent == 0) // 0 %
-                                            textSpeech.text = "Это ведь просто ужас! Проваливай!";
+                                            textSpeech.text = "It's terrible! Get out!";
                                         else if (happyPercent < 45) // 0.01 - 44.99 %
-                                            textSpeech.text = $"Бедные души... Из {counterTotalSpirits} очистилось всего {counterHappySpirits}. Прошу, уйди.";
+                                            textSpeech.text = $"Poor souls... Of {counterTotalSpirits}, only {counterHappySpirits} were cleared. Please go away.";
                                         else if (happyPercent >= 45 && happyPercent < 75) // 45 - 74.99 %
-                                            textSpeech.text = $"По крайней мере, ты старался(ась). Из {counterTotalSpirits} очистилось только {counterHappySpirits}. Можешь идти.";
+                                            textSpeech.text = $"At least you tried. Only {counterHappySpirits} were cleared from {counterTotalSpirits}. You can go now.";
                                         else if (happyPercent >= 75 && happyPercent < 100) // 75 - 99.99 %
-                                            textSpeech.text = $"Чудненько! Ты смог очистить целых {counterHappySpirits} душ из {counterTotalSpirits}. Спасибо, прощай!";
+                                            textSpeech.text = $"That's wonderful! You were able to purify entire {counterHappySpirits} souls from {counterTotalSpirits}. Thank you, goodbye!";
                                     }
                                     else if (counterTotalSpirits == 0)
-                                        textSpeech.text = "Ты даже не попытался(ась)! Проваливай!";
+                                        textSpeech.text = "You didn't even try! Get out!";
                                     else
-                                        textSpeech.text = "Все души, которые ты посадил, очистились. Спасибо, прощай!";
+                                        textSpeech.text = "All the souls that you planted have been cleansed. Thank you, goodbye!";
 
                                     speechCode = 3;
                                     break;

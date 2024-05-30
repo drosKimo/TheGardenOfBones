@@ -25,31 +25,31 @@ public class CS_SpeechBoxScript : MonoBehaviour
         switch (counter)
         {
             case 1:
-                speechBox.text = "Добро пожаловать в сад костей, ученик!";
+                speechBox.text = "Welcome to the Garden of bones, follower!";
                 break;
 
             case 2:
-                speechBox.text = "Отлично! Теперь попробуй закопать одну из них";
+                speechBox.text = "Great! Now try to bury one of them";
                 break;
 
             case 3:
-                speechBox.text = "Хорошо, теперь ты знаешь как работать с землёй";
+                speechBox.text = "Okay, now you know how to work with the earth";
                 break;
 
             case 4:
-                speechBox.text = "Видишь облачко? Это значит, что ему нужна твоя помощь";
+                speechBox.text = "Do you see a cloud? That means it needs your help.";
                 break;
 
             case 5:
-                speechBox.text = "Теперь этот дружок будет ходить за тобой!";
+                speechBox.text = "Now this buddy will follow you!";
                 break;
 
             case 6:
-                speechBox.text = "Как и всем растениям, ему нужен уход";
+                speechBox.text = "Like all plants, it needs care";
                 break;
 
             case 7:
-                speechBox.text = "Совсем другое дело! Не забывай ухаживать за садом";
+                speechBox.text = "It's a completely different matter! Don't forget to take care of the garden";
                 break;
         }
     }

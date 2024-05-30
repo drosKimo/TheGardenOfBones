@@ -33,11 +33,11 @@ public class CS_TriggersScript : MonoBehaviour
         GetTileCount();
 
         if (countCode == 4 && !SpeechBox.activeSelf)
-            tips.text = "Нажмите E, чтобы взаимодействовать";
+            tips.text = "Press E to interact";
         else if (countCode == 5 && !SpeechBox.activeSelf)
-            tips.text = "Нажмите LMB по вскопанной земле, чтобы посадить";
+            tips.text = "Press LMB on the excavated ground to plant";
         else if (countCode == 6 && !SpeechBox.activeSelf)
-            tips.text = "Подойдите к растению и нажмите E";
+            tips.text = "Go to the plant and press E";
 
         if ((countCode == 1 && amountGround == 2) ||
             (countCode == 2 && amountGround == 1) ||
@@ -78,10 +78,10 @@ public class CS_TriggersScript : MonoBehaviour
                                 if (countCode == 0)
                                 {
                                     countCode = 1;
-                                    tips.text = "Нажмите LMB, чтобы вскопать землю";
+                                    tips.text = "Press LMB to dig up the ground";
                                 }
                                 else if (countCode == 2)
-                                    tips.text = "Нажмите RMB, чтобы закопать вскопанную землю";
+                                    tips.text = "Press RMB to bury the excavated ground";
                                 
                                 break;
                         }
